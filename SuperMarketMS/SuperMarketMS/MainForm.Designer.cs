@@ -160,20 +160,20 @@
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(43, 13);
+            this.lblUserName.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.Location = new System.Drawing.Point(40, 17);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(149, 21);
+            this.lblUserName.Size = new System.Drawing.Size(130, 17);
             this.lblUserName.TabIndex = 1;
             this.lblUserName.Text = "Can\'t get user name";
             // 
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateTime.Location = new System.Drawing.Point(526, 13);
+            this.lblDateTime.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.Location = new System.Drawing.Point(472, 17);
             this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(110, 21);
+            this.lblDateTime.Size = new System.Drawing.Size(95, 17);
             this.lblDateTime.TabIndex = 2;
             this.lblDateTime.Text = "Can\'t get Time";
             // 
