@@ -21,7 +21,7 @@ namespace SuperMarketMS
 
         private void SalesRegister_Load(object sender, EventArgs e)
         {
-           
+            pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\default.png");
         }
 
         private void txtItemCode_Leave(object sender, EventArgs e)
@@ -32,6 +32,9 @@ namespace SuperMarketMS
             double gross = 0;
             int discount = 0;
             bool addToBill = false;
+            txtItemName.Clear(); txtGross.Clear(); txtDisPercentage.Clear();
+            txtDisPercentage.Clear();txtDisAmount.Clear();txtNetAmount.Clear();
+            pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\default.png");
 
             if (txtItemCode.Text != "")
             {
@@ -66,7 +69,8 @@ namespace SuperMarketMS
                     txtDisPercentage.Text = discount.ToString();
                     if (discount > 0)
                     {
-                        double disAmount = gross * (discount / 100);
+                        double discountP = discount / 100.0;
+                        double disAmount = decimal.Multiply(gross, discountP);
                         txtDisAmount.Text = disAmount.ToString();
                         txtNetAmount.Text = (gross - disAmount).ToString();
                     }
