@@ -16,5 +16,10 @@ namespace SuperMarketMS
         {
             InitializeComponent();
         }
+
+        private void SalesRegister_Load(object sender, EventArgs e)
+        {
+            pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\1.jpg");
+        }
     }
 }

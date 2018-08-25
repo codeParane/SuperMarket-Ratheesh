@@ -51,7 +51,7 @@
             this.btnSales.Location = new System.Drawing.Point(43, 53);
             this.btnSales.Name = "btnSales";
             this.btnSales.Size = new System.Drawing.Size(215, 80);
-            this.btnSales.TabIndex = 0;
+            this.btnSales.TabIndex = 1;
             this.btnSales.Text = "Sales Register";
             this.btnSales.UseVisualStyleBackColor = true;
             this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
@@ -62,7 +62,7 @@
             this.button2.Location = new System.Drawing.Point(284, 53);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(215, 80);
-            this.button2.TabIndex = 0;
+            this.button2.TabIndex = 2;
             this.button2.Text = "button1";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -72,7 +72,7 @@
             this.button3.Location = new System.Drawing.Point(529, 53);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(215, 80);
-            this.button3.TabIndex = 0;
+            this.button3.TabIndex = 3;
             this.button3.Text = "button1";
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -92,7 +92,7 @@
             this.button5.Location = new System.Drawing.Point(284, 153);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(215, 80);
-            this.button5.TabIndex = 0;
+            this.button5.TabIndex = 5;
             this.button5.Text = "button1";
             this.button5.UseVisualStyleBackColor = true;
             // 
@@ -102,7 +102,7 @@
             this.button6.Location = new System.Drawing.Point(43, 153);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(215, 80);
-            this.button6.TabIndex = 0;
+            this.button6.TabIndex = 4;
             this.button6.Text = "button1";
             this.button6.UseVisualStyleBackColor = true;
             // 
@@ -112,7 +112,7 @@
             this.button7.Location = new System.Drawing.Point(529, 153);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(215, 80);
-            this.button7.TabIndex = 0;
+            this.button7.TabIndex = 6;
             this.button7.Text = "button1";
             this.button7.UseVisualStyleBackColor = true;
             // 
@@ -132,7 +132,7 @@
             this.button9.Location = new System.Drawing.Point(284, 261);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(215, 80);
-            this.button9.TabIndex = 0;
+            this.button9.TabIndex = 8;
             this.button9.Text = "button1";
             this.button9.UseVisualStyleBackColor = true;
             // 
@@ -142,7 +142,7 @@
             this.button10.Location = new System.Drawing.Point(43, 261);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(215, 80);
-            this.button10.TabIndex = 0;
+            this.button10.TabIndex = 7;
             this.button10.Text = "button1";
             this.button10.UseVisualStyleBackColor = true;
             // 
@@ -152,7 +152,7 @@
             this.btnLogOut.Location = new System.Drawing.Point(529, 261);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(215, 80);
-            this.btnLogOut.TabIndex = 0;
+            this.btnLogOut.TabIndex = 9;
             this.btnLogOut.Text = "Logout";
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
