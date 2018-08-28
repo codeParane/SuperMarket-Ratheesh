@@ -53,15 +53,15 @@
             this.msCompanyPrice = new System.Windows.Forms.TextBox();
             this.msBarCode = new System.Windows.Forms.TextBox();
             this.tpcProducts = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.tpcManageProducts = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.isWeight = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.iItemCategory = new System.Windows.Forms.ComboBox();
+            this.iIsWeight = new System.Windows.Forms.ComboBox();
+            this.iItemName = new System.Windows.Forms.TextBox();
+            this.tpcManageProducts = new System.Windows.Forms.TabPage();
             this.tpcStocks.SuspendLayout();
             this.tpcStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).BeginInit();
@@ -245,7 +245,7 @@
             // 
             // msExpiryDate
             // 
-            this.msExpiryDate.CustomFormat = "yyyy - MM - dd";
+            this.msExpiryDate.CustomFormat = "yyyy/MM/dd";
             this.msExpiryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.msExpiryDate.Location = new System.Drawing.Point(110, 246);
             this.msExpiryDate.Name = "msExpiryDate";
@@ -327,12 +327,12 @@
             // 
             this.tpcProducts.Controls.Add(this.button2);
             this.tpcProducts.Controls.Add(this.button1);
-            this.tpcProducts.Controls.Add(this.label11);
+            this.tpcProducts.Controls.Add(this.isWeight);
             this.tpcProducts.Controls.Add(this.label10);
             this.tpcProducts.Controls.Add(this.label9);
-            this.tpcProducts.Controls.Add(this.comboBox1);
-            this.tpcProducts.Controls.Add(this.comboBox2);
-            this.tpcProducts.Controls.Add(this.textBox3);
+            this.tpcProducts.Controls.Add(this.iItemCategory);
+            this.tpcProducts.Controls.Add(this.iIsWeight);
+            this.tpcProducts.Controls.Add(this.iItemName);
             this.tpcProducts.Location = new System.Drawing.Point(4, 26);
             this.tpcProducts.Name = "tpcProducts";
             this.tpcProducts.Padding = new System.Windows.Forms.Padding(3);
@@ -341,15 +341,35 @@
             this.tpcProducts.Text = "Items";
             this.tpcProducts.UseVisualStyleBackColor = true;
             this.tpcProducts.Click += new System.EventHandler(this.tpcProducts_Click);
+            this.tpcProducts.Enter += new System.EventHandler(this.tpcProducts_Enter);
             // 
-            // label11
+            // button2
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 88);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 17);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "Item";
+            this.button2.Location = new System.Drawing.Point(228, 115);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(74, 29);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Clear";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(122, 115);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 29);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Add to Items";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // isWeight
+            // 
+            this.isWeight.AutoSize = true;
+            this.isWeight.Location = new System.Drawing.Point(20, 88);
+            this.isWeight.Name = "isWeight";
+            this.isWeight.Size = new System.Drawing.Size(65, 17);
+            this.isWeight.TabIndex = 9;
+            this.isWeight.Text = "is Weight";
             // 
             // label10
             // 
@@ -369,31 +389,33 @@
             this.label9.TabIndex = 11;
             this.label9.Text = "Item Name";
             // 
-            // comboBox1
+            // iItemCategory
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(122, 49);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 25);
-            this.comboBox1.TabIndex = 7;
+            this.iItemCategory.FormattingEnabled = true;
+            this.iItemCategory.Location = new System.Drawing.Point(122, 49);
+            this.iItemCategory.Name = "iItemCategory";
+            this.iItemCategory.Size = new System.Drawing.Size(180, 25);
+            this.iItemCategory.TabIndex = 7;
             // 
-            // comboBox2
+            // iIsWeight
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.iIsWeight.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.iIsWeight.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.iIsWeight.FormattingEnabled = true;
+            this.iIsWeight.Items.AddRange(new object[] {
             "True",
             "False"});
-            this.comboBox2.Location = new System.Drawing.Point(122, 84);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(180, 25);
-            this.comboBox2.TabIndex = 8;
+            this.iIsWeight.Location = new System.Drawing.Point(122, 84);
+            this.iIsWeight.Name = "iIsWeight";
+            this.iIsWeight.Size = new System.Drawing.Size(180, 25);
+            this.iIsWeight.TabIndex = 8;
             // 
-            // textBox3
+            // iItemName
             // 
-            this.textBox3.Location = new System.Drawing.Point(122, 18);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(180, 25);
-            this.textBox3.TabIndex = 6;
+            this.iItemName.Location = new System.Drawing.Point(122, 18);
+            this.iItemName.Name = "iItemName";
+            this.iItemName.Size = new System.Drawing.Size(180, 25);
+            this.iItemName.TabIndex = 6;
             // 
             // tpcManageProducts
             // 
@@ -404,24 +426,6 @@
             this.tpcManageProducts.TabIndex = 3;
             this.tpcManageProducts.Text = "Manage Items";
             this.tpcManageProducts.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(228, 115);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 29);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(122, 115);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Add to Items";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // StockManagement
             // 
@@ -472,12 +476,12 @@
         private System.Windows.Forms.TextBox msCompanyPrice;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox msDiscount;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label isWeight;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.ComboBox iItemCategory;
+        private System.Windows.Forms.ComboBox iIsWeight;
+        private System.Windows.Forms.TextBox iItemName;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
     }
