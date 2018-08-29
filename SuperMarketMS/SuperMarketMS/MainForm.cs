@@ -19,7 +19,11 @@ namespace SuperMarketMS
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            lblUserName.Text = "Cashier : " + LoginForm.loggedUser.ToUpper();
+            if(LoginForm.loggedUser != null)
+            {
+                lblUserName.Text = "Cashier : " + LoginForm.loggedUser.ToUpper();
+
+            }
 
             tmrDateTime.Enabled = true;
             tmrDateTime.Interval = 1000;

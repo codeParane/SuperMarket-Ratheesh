@@ -44,7 +44,7 @@
             this.txtSelling = new System.Windows.Forms.TextBox();
             this.txtQty = new System.Windows.Forms.TextBox();
             this.txtItemCode = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCurrentBill = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,7 +54,7 @@
             this.lblDiscount = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboItemImage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentBill)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,14 +223,14 @@
             this.txtItemCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItemCode_KeyDown);
             this.txtItemCode.Leave += new System.EventHandler(this.txtItemCode_Leave);
             // 
-            // dataGridView1
+            // dgvCurrentBill
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 155);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(639, 327);
-            this.dataGridView1.TabIndex = 1;
+            this.dgvCurrentBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCurrentBill.GridColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvCurrentBill.Location = new System.Drawing.Point(12, 155);
+            this.dgvCurrentBill.Name = "dgvCurrentBill";
+            this.dgvCurrentBill.Size = new System.Drawing.Size(639, 327);
+            this.dgvCurrentBill.TabIndex = 1;
             // 
             // button1
             // 
@@ -251,8 +251,9 @@
             this.button2.Size = new System.Drawing.Size(115, 56);
             this.button2.TabIndex = 2;
             this.button2.TabStop = false;
-            this.button2.Text = "button1";
+            this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -313,19 +314,21 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 494);
+            this.ControlBox = false;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvCurrentBill);
             this.Controls.Add(this.groupBox1);
             this.Name = "SalesRegister";
             this.Text = " ";
             this.Load += new System.EventHandler(this.SalesRegister_Load);
+            this.Leave += new System.EventHandler(this.SalesRegister_Leave);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboItemImage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentBill)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -349,7 +352,7 @@
         private System.Windows.Forms.TextBox txtDisPercentage;
         private System.Windows.Forms.TextBox txtSelling;
         private System.Windows.Forms.PictureBox pboItemImage;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCurrentBill;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;

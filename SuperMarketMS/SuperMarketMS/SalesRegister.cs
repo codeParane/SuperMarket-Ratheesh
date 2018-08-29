@@ -23,6 +23,12 @@ namespace SuperMarketMS
         private void SalesRegister_Load(object sender, EventArgs e)
         {
             pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\default.png");
+            //
+            string qCurrentBill = "select * from currentbill;";
+            MySqlDataAdapter aCurrentBill = new MySqlDataAdapter(qCurrentBill, dbconn.connection);
+            DataSet ds = new DataSet();
+            aCurrentBill.Fill(ds, "CurrentBill");
+            dgvCurrentBill.DataSource = ds.Tables["CurrentBill"];
         }
 
         private void txtItemCode_Leave(object sender, EventArgs e)
@@ -98,16 +104,9 @@ namespace SuperMarketMS
         {
             if(e.KeyCode  == Keys.Enter)
             {
-                if(decimal.Parse(txtQty.Text) > 0)
-                {
-                    MessageBox.Show("word");
-                    txtItemCode.Clear();
-                    txtQty.Clear();
-                    txtItemCode.Focus();
-                }
-                
+                txtQty_Leave(sender, e);
             }
-           
+
         }
 
         private void txtItemCode_KeyDown(object sender, KeyEventArgs e)
@@ -129,22 +128,52 @@ namespace SuperMarketMS
 
         private void txtQty_Leave(object sender, EventArgs e)
         {
-            if(txtItemName.Text != "" && decimal.Parse(txtQty.Text) > 0)
+            if(txtQty.Text == null)
             {
+                txtQty.Text = "0";
+            }
+
+            if (txtItemName.Text != "" && decimal.Parse(txtQty.Text) > 0 && txtItemCode.Text != "")
+            {
+                MessageBox.Show("as");
                 string itemcode = txtItemCode.Text;
                 string itemName = txtItemName.Text;
                 decimal qty = Math.Round(decimal.Parse(txtQty.Text), 3);
                 decimal rate = Math.Round(decimal.Parse(txtSelling.Text), 2);
-                decimal discount = Math.Round((decimal.Parse(txtDisAmount.Text) * qty),2); 
+                string discount = txtDisPercentage.Text; 
                 decimal netAmount = Math.Round(decimal.Parse(txtNetAmount.Text), 2);
                 decimal netTotal = Math.Round((qty * netAmount),2);
 
-                string qAddToBill = "INSERT INTO ";
+                string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
+                    "," + rate + "," + discount + ", " + netTotal + ");";
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
                 MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
                 int queryAffected = cAddToBill.ExecuteNonQuery();
-
-
             }
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qCurrentBill = "select * from currentbill;";
+            MySqlDataAdapter aCurrentBill = new MySqlDataAdapter(qCurrentBill, dbconn.connection);
+            DataSet ds = new DataSet();
+            aCurrentBill.Fill(ds, "CurrentBill");
+            dgvCurrentBill.DataSource = ds.Tables["CurrentBill"];
+            txtItemCode.Clear();
+            txtQty.Clear();
+            txtItemCode.Focus();
+
+        }
+
+        private void SalesRegister_Leave(object sender, EventArgs e)
+        {
+            MessageBox.Show("sss");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm mf = new MainForm();
+            mf.Show();
         }
     }
 }
