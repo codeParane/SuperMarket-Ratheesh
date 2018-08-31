@@ -24,6 +24,8 @@ namespace SuperMarketMS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
             bool isExecute = true;
             if(txtUserName.Text.Equals("") || txtPassword.Text.Equals(""))
             {

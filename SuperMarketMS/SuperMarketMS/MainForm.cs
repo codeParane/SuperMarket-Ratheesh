@@ -51,5 +51,12 @@ namespace SuperMarketMS
             SalesRegister salesRegister = new SalesRegister();
             salesRegister.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StockManagement stockManagement = new StockManagement();
+            stockManagement.Show();
+        }
     }
 }

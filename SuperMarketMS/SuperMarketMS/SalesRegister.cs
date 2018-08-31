@@ -1,12 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarketMS
@@ -141,11 +136,12 @@ namespace SuperMarketMS
                 decimal qty = Math.Round(decimal.Parse(txtQty.Text), 3);
                 decimal rate = Math.Round(decimal.Parse(txtSelling.Text), 2);
                 string discount = txtDisPercentage.Text; 
+                decimal disAmount = decimal.Parse(txtDisAmount.Text);
                 decimal netAmount = Math.Round(decimal.Parse(txtNetAmount.Text), 2);
                 decimal netTotal = Math.Round((qty * netAmount),2);
 
                 string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
-                    "," + rate + "," + discount + ", " + netTotal + ");";
+                    "," + rate + "," + discount + ", " + disAmount + ", "  + netTotal + ");";
                 dbconn.CloseConnection();
                 dbconn.OpenConnection();
                 MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
@@ -162,6 +158,8 @@ namespace SuperMarketMS
             txtQty.Clear();
             txtItemCode.Focus();
 
+
+
         }
 
         private void SalesRegister_Leave(object sender, EventArgs e)
@@ -171,9 +169,11 @@ namespace SuperMarketMS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Form fm = this;
+            fm.Hide();
             MainForm mf = new MainForm();
             mf.Show();
+            fm.Close();
         }
     }
 }

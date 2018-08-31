@@ -358,8 +358,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblGross;
+        private System.Windows.Forms.TextBox txtItemCode;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblDiscount;
-        private System.Windows.Forms.TextBox txtItemCode;
     }
 }
