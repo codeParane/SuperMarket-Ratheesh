@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tpcStocks = new System.Windows.Forms.TabControl();
             this.tpcStock = new System.Windows.Forms.TabPage();
-            this.cmbItem = new System.Windows.Forms.ComboBox();
-            this.cmbItemCategory = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbStocksItem = new System.Windows.Forms.ComboBox();
+            this.cmbStoksItemCat = new System.Windows.Forms.ComboBox();
             this.dgvStocks = new System.Windows.Forms.DataGridView();
             this.tpcManageStock = new System.Windows.Forms.TabPage();
             this.msClear = new System.Windows.Forms.Button();
@@ -85,8 +91,10 @@
             // 
             // tpcStock
             // 
-            this.tpcStock.Controls.Add(this.cmbItem);
-            this.tpcStock.Controls.Add(this.cmbItemCategory);
+            this.tpcStock.Controls.Add(this.label12);
+            this.tpcStock.Controls.Add(this.label11);
+            this.tpcStock.Controls.Add(this.cmbStocksItem);
+            this.tpcStock.Controls.Add(this.cmbStoksItemCat);
             this.tpcStock.Controls.Add(this.dgvStocks);
             this.tpcStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tpcStock.Location = new System.Drawing.Point(4, 26);
@@ -99,29 +107,81 @@
             this.tpcStock.Click += new System.EventHandler(this.tpcStock_Click);
             this.tpcStock.Enter += new System.EventHandler(this.tpcStock_Enter);
             // 
-            // cmbItem
+            // label12
             // 
-            this.cmbItem.FormattingEnabled = true;
-            this.cmbItem.Location = new System.Drawing.Point(166, 52);
-            this.cmbItem.Name = "cmbItem";
-            this.cmbItem.Size = new System.Drawing.Size(121, 29);
-            this.cmbItem.TabIndex = 2;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(17, 44);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 17);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Items";
             // 
-            // cmbItemCategory
+            // label11
             // 
-            this.cmbItemCategory.FormattingEnabled = true;
-            this.cmbItemCategory.Location = new System.Drawing.Point(8, 52);
-            this.cmbItemCategory.Name = "cmbItemCategory";
-            this.cmbItemCategory.Size = new System.Drawing.Size(121, 29);
-            this.cmbItemCategory.TabIndex = 2;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(17, 9);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 17);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Items Category";
+            // 
+            // cmbStocksItem
+            // 
+            this.cmbStocksItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStocksItem.FormattingEnabled = true;
+            this.cmbStocksItem.Items.AddRange(new object[] {
+            "-SELECT-"});
+            this.cmbStocksItem.Location = new System.Drawing.Point(117, 41);
+            this.cmbStocksItem.Name = "cmbStocksItem";
+            this.cmbStocksItem.Size = new System.Drawing.Size(246, 25);
+            this.cmbStocksItem.TabIndex = 2;
+            this.cmbStocksItem.SelectedIndexChanged += new System.EventHandler(this.cmbStocksItem_SelectedIndexChanged);
+            // 
+            // cmbStoksItemCat
+            // 
+            this.cmbStoksItemCat.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStoksItemCat.FormattingEnabled = true;
+            this.cmbStoksItemCat.Location = new System.Drawing.Point(117, 6);
+            this.cmbStoksItemCat.Name = "cmbStoksItemCat";
+            this.cmbStoksItemCat.Size = new System.Drawing.Size(246, 25);
+            this.cmbStoksItemCat.TabIndex = 2;
+            this.cmbStoksItemCat.SelectedIndexChanged += new System.EventHandler(this.cmbItemCategory_SelectedIndexChanged);
             // 
             // dgvStocks
             // 
+            this.dgvStocks.AllowUserToAddRows = false;
+            this.dgvStocks.AllowUserToDeleteRows = false;
+            this.dgvStocks.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
+            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStocks.Location = new System.Drawing.Point(8, 87);
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvStocks.Location = new System.Drawing.Point(8, 76);
             this.dgvStocks.Name = "dgvStocks";
-            this.dgvStocks.Size = new System.Drawing.Size(707, 270);
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvStocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStocks.Size = new System.Drawing.Size(707, 344);
             this.dgvStocks.TabIndex = 1;
             // 
             // tpcManageStock
@@ -431,13 +491,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 483);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(774, 483);
             this.Controls.Add(this.tpcStocks);
             this.Name = "StockManagement";
             this.Text = "StockManagement";
             this.Load += new System.EventHandler(this.StockManagement_Load);
             this.tpcStocks.ResumeLayout(false);
             this.tpcStock.ResumeLayout(false);
+            this.tpcStock.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).EndInit();
             this.tpcManageStock.ResumeLayout(false);
             this.tpcManageStock.PerformLayout();
@@ -456,8 +518,8 @@
         private System.Windows.Forms.TabPage tpcProducts;
         private System.Windows.Forms.TabPage tpcManageProducts;
         private System.Windows.Forms.DataGridView dgvStocks;
-        private System.Windows.Forms.ComboBox cmbItem;
-        private System.Windows.Forms.ComboBox cmbItemCategory;
+        private System.Windows.Forms.ComboBox cmbStocksItem;
+        private System.Windows.Forms.ComboBox cmbStoksItemCat;
         private System.Windows.Forms.ComboBox msItemCategory;
         private System.Windows.Forms.TextBox msBarCode;
         private System.Windows.Forms.NumericUpDown msQuantity;
@@ -484,5 +546,7 @@
         private System.Windows.Forms.TextBox iItemName;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }

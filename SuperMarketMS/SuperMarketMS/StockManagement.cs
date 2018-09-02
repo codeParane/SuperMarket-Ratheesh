@@ -7,13 +7,112 @@ namespace SuperMarketMS
 {
     public partial class StockManagement : Form
     {
-        private object query131;
         DbConn dbconn = new DbConn();
 
         public StockManagement()
         {
             InitializeComponent();
         }
+
+
+        //stocks tap
+        private void tpcStock_Enter(object sender, EventArgs e)
+        {
+            cmbStoksItemCat.Items.Clear();
+            cmbStoksItemCat.Items.Add("ALL");
+            cmbStoksItemCat.SelectedItem = "ALL";
+
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qCmbCatFill = "SELECT DISTINCT category FROM items;";
+            MySqlDataAdapter aCmbCatFill = new MySqlDataAdapter(qCmbCatFill, dbconn.connection);
+            DataTable dt = new DataTable();
+            aCmbCatFill.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbStoksItemCat.Items.Add(row[0].ToString());
+            }
+        }
+        private void cmbItemCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbStoksItemCat.Text == "ALL")
+            {
+                cmbStocksItem.Enabled = false;
+                string qGetStocks = "SELECT "+
+                    "s.barcode AS 'Bar Code', i.name AS 'Item Name', i.category AS "+
+                    "'Item Category', s.qty AS 'Quantity ' "+
+                    "FROM items AS i JOIN stocks AS s ON i.id = s.itemid; ";
+                MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+                DataSet ds = new DataSet();
+                aGetStocks.Fill(ds, "Stocks");
+                dgvStocks.DataSource = ds.Tables["Stocks"];
+            }
+            else
+            {
+                cmbStocksItem.Enabled = true;
+                cmbStocksItem.Items.Clear();
+                cmbStocksItem.Items.Add("ALL");
+                cmbStocksItem.SelectedItem = "ALL";
+                string selectedCategory = cmbStoksItemCat.Text;
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                string qCmbItemFill = "SELECT name FROM items WHERE category = '" + selectedCategory + "';";
+                MySqlDataAdapter aCmbItemFill = new MySqlDataAdapter(qCmbItemFill, dbconn.connection);
+                DataTable dt = new DataTable();
+                aCmbItemFill.Fill(dt);
+                foreach (DataRow row in dt.Rows)
+                {
+                    cmbStocksItem.Items.Add(row[0].ToString());
+                }
+
+                string qGetStocks = "SELECT s.barcode, i.name, i.category, s.qty FROM items AS i JOIN stocks " +
+               "AS s ON i.id = s.itemid WHERE i.category = '" + cmbStoksItemCat.Text + "'; ";
+                MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+                DataSet ds = new DataSet();
+                aGetStocks.Fill(ds, "Stocks2");
+                dgvStocks.DataSource = ds.Tables["Stocks2"];
+
+            }
+
+        }
+        private void cmbStocksItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string qGetStocks = "SELECT s.barcode, i.name, i.category, s.qty FROM items AS i JOIN stocks " +
+                "AS s ON i.id = s.itemid WHERE i.category = '" + cmbStoksItemCat.Text + "' && i.name = '" +
+                cmbStocksItem.Text + "'; ";
+            MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+            DataSet ds = new DataSet();
+            aGetStocks.Fill(ds, "Stocks");
+            dgvStocks.DataSource = ds.Tables["Stocks"];
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void tpcStocks_Click(object sender, EventArgs e)
         {
@@ -27,64 +126,7 @@ namespace SuperMarketMS
 
         }
 
-        private void tpcStock_Enter(object sender, EventArgs e)
-        {
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qCmbItemCategoryFill = "SELECT DISTINCT category FROM items;";
-            MySqlDataAdapter aCmbItemCategoryFill = new MySqlDataAdapter(qCmbItemCategoryFill, dbconn.connection);
-            DataSet ds1 = new DataSet();
-            aCmbItemCategoryFill.Fill(ds1, "cmbCategories");
-
-            msItemCategory.DataSource = ds1.Tables["cmbCategories"].DefaultView;
-            msItemCategory.DisplayMember = "category";
-            msItemCategory.BindingContext = this.BindingContext;
-
-            cmbItemCategory.DataSource = ds1.Tables["cmbCategories"].DefaultView;
-            cmbItemCategory.DisplayMember = "category";
-            cmbItemCategory.BindingContext = this.BindingContext;
-
-
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qCmbItemFill = "SELECT DISTINCT name FROM items;";
-            MySqlDataAdapter aCmbItemFill = new MySqlDataAdapter(qCmbItemFill, dbconn.connection);
-            DataSet dsCmbItemFill = new DataSet();
-            aCmbItemFill.Fill(dsCmbItemFill, "CmbItem");
-
-            msItem.DataSource = dsCmbItemFill.Tables["CmbItem"].DefaultView;
-            msItem.DisplayMember = "name";
-            msItem.BindingContext = this.BindingContext;
-
-
-            cmbItem.DataSource = ds1.Tables["cmbCategories"].DefaultView;
-            cmbItem.DisplayMember = "category";
-            cmbItem.BindingContext = this.BindingContext;
-
-
-
-
-
-
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            try
-            {
-                string qGetStocks = "select * from users;";
-                MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
-                //MySqlDataReader rGetStocks = new MySqlDataReader();
-                DataSet ds = new DataSet();
-                aGetStocks.Fill(ds, "Stocks");
-                dgvStocks.DataSource = ds.Tables["Stocks"];
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-
-        }
+       
 
         private void tpcStock_Click(object sender, EventArgs e)
         {
@@ -210,5 +252,7 @@ namespace SuperMarketMS
             iItemCategory.BindingContext = this.BindingContext;
            
         }
+
+      
     }
 }
