@@ -162,19 +162,19 @@ namespace SuperMarketMS
             decimal companyPrice = 0, sellingPrice = 0, quantity = 0;
             int discountP = 0;
 
-            if (msBarCode.Text != "" || msItemCategory.Text != "" || msItem.Text != ""
+            if (msBarCode.Text != "" || cmbMgStocksItemCat.Text != "" || cmbMgStocksItem.Text != ""
                 || msCompanyPrice.Text != "" || msSellingPrice.Text != "")
             {
                 barcode = msBarCode.Text;
-                itemCategory = msItemCategory.Text;
-                item = msItem.Text;
+                itemCategory = cmbMgStocksItemCat.Text;
+                item = cmbMgStocksItem.Text;
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text),2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text),2);
                 discountP = int.Parse(msDiscount.Text);
                 quantity = decimal.Parse(msQuantity.Text);
                 expiryDate = msExpiryDate.Text;
 
-                MessageBox.Show("Not Completed Details!!!!");
+                //MessageBox.Show("Not Completed Details!!!!");
             
                 string itemId="";
                 MySqlCommand cmd = new MySqlCommand("SELECT id FROM items WHERE name='"+ item +"'", dbconn.connection);
@@ -253,6 +253,36 @@ namespace SuperMarketMS
            
         }
 
-      
+        private void tpcManageStock_Enter_1(object sender, EventArgs e)
+        {
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qCmbCatFill = "SELECT DISTINCT category FROM items;";
+            MySqlDataAdapter aCmbCatFill = new MySqlDataAdapter(qCmbCatFill, dbconn.connection);
+            DataTable dt = new DataTable();
+            aCmbCatFill.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbMgStocksItemCat.Items.Add(row[0].ToString());
+            }
+            cmbMgStocksItemCat.SelectedIndex = 0;
+        }
+
+        private void cmbMgStocksItemCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbMgStocksItem.Items.Clear();
+            string selectedCat = cmbMgStocksItemCat.Text;
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qCmbItemFill = "SELECT name FROM items WHERE category = '" + selectedCat + "';";
+            MySqlDataAdapter aCmbItemFill = new MySqlDataAdapter(qCmbItemFill, dbconn.connection);
+            DataTable dt = new DataTable();
+            aCmbItemFill.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbMgStocksItem.Items.Add(row[0].ToString());
+            }
+            cmbMgStocksItem.SelectedIndex = 0;
+        }
     }
 }

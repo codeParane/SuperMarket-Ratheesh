@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tpcStocks = new System.Windows.Forms.TabControl();
             this.tpcStock = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
@@ -52,8 +52,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.msExpiryDate = new System.Windows.Forms.DateTimePicker();
             this.msQuantity = new System.Windows.Forms.NumericUpDown();
-            this.msItem = new System.Windows.Forms.ComboBox();
-            this.msItemCategory = new System.Windows.Forms.ComboBox();
+            this.cmbMgStocksItem = new System.Windows.Forms.ComboBox();
+            this.cmbMgStocksItemCat = new System.Windows.Forms.ComboBox();
             this.msDiscount = new System.Windows.Forms.TextBox();
             this.msSellingPrice = new System.Windows.Forms.TextBox();
             this.msCompanyPrice = new System.Windows.Forms.TextBox();
@@ -154,31 +154,31 @@
             this.dgvStocks.AllowUserToAddRows = false;
             this.dgvStocks.AllowUserToDeleteRows = false;
             this.dgvStocks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
-            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
+            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvStocks.Location = new System.Drawing.Point(8, 76);
             this.dgvStocks.Name = "dgvStocks";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvStocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStocks.Size = new System.Drawing.Size(707, 344);
@@ -198,8 +198,8 @@
             this.tpcManageStock.Controls.Add(this.label1);
             this.tpcManageStock.Controls.Add(this.msExpiryDate);
             this.tpcManageStock.Controls.Add(this.msQuantity);
-            this.tpcManageStock.Controls.Add(this.msItem);
-            this.tpcManageStock.Controls.Add(this.msItemCategory);
+            this.tpcManageStock.Controls.Add(this.cmbMgStocksItem);
+            this.tpcManageStock.Controls.Add(this.cmbMgStocksItemCat);
             this.tpcManageStock.Controls.Add(this.msDiscount);
             this.tpcManageStock.Controls.Add(this.msSellingPrice);
             this.tpcManageStock.Controls.Add(this.msCompanyPrice);
@@ -211,6 +211,7 @@
             this.tpcManageStock.TabIndex = 1;
             this.tpcManageStock.Text = "Manage Stocks";
             this.tpcManageStock.UseVisualStyleBackColor = true;
+            this.tpcManageStock.Enter += new System.EventHandler(this.tpcManageStock_Enter_1);
             // 
             // msClear
             // 
@@ -326,25 +327,26 @@
             0});
             this.msQuantity.ValueChanged += new System.EventHandler(this.txtStocks_ValueChanged);
             // 
-            // msItem
+            // cmbMgStocksItem
             // 
-            this.msItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.msItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.msItem.FormattingEnabled = true;
-            this.msItem.Location = new System.Drawing.Point(110, 91);
-            this.msItem.Name = "msItem";
-            this.msItem.Size = new System.Drawing.Size(180, 25);
-            this.msItem.TabIndex = 3;
+            this.cmbMgStocksItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbMgStocksItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbMgStocksItem.FormattingEnabled = true;
+            this.cmbMgStocksItem.Location = new System.Drawing.Point(110, 91);
+            this.cmbMgStocksItem.Name = "cmbMgStocksItem";
+            this.cmbMgStocksItem.Size = new System.Drawing.Size(180, 25);
+            this.cmbMgStocksItem.TabIndex = 3;
             // 
-            // msItemCategory
+            // cmbMgStocksItemCat
             // 
-            this.msItemCategory.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.msItemCategory.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.msItemCategory.FormattingEnabled = true;
-            this.msItemCategory.Location = new System.Drawing.Point(110, 60);
-            this.msItemCategory.Name = "msItemCategory";
-            this.msItemCategory.Size = new System.Drawing.Size(180, 25);
-            this.msItemCategory.TabIndex = 2;
+            this.cmbMgStocksItemCat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbMgStocksItemCat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbMgStocksItemCat.FormattingEnabled = true;
+            this.cmbMgStocksItemCat.Location = new System.Drawing.Point(110, 60);
+            this.cmbMgStocksItemCat.Name = "cmbMgStocksItemCat";
+            this.cmbMgStocksItemCat.Size = new System.Drawing.Size(180, 25);
+            this.cmbMgStocksItemCat.TabIndex = 2;
+            this.cmbMgStocksItemCat.SelectedIndexChanged += new System.EventHandler(this.cmbMgStocksItemCat_SelectedIndexChanged);
             // 
             // msDiscount
             // 
@@ -520,10 +522,10 @@
         private System.Windows.Forms.DataGridView dgvStocks;
         private System.Windows.Forms.ComboBox cmbStocksItem;
         private System.Windows.Forms.ComboBox cmbStoksItemCat;
-        private System.Windows.Forms.ComboBox msItemCategory;
+        private System.Windows.Forms.ComboBox cmbMgStocksItemCat;
         private System.Windows.Forms.TextBox msBarCode;
         private System.Windows.Forms.NumericUpDown msQuantity;
-        private System.Windows.Forms.ComboBox msItem;
+        private System.Windows.Forms.ComboBox cmbMgStocksItem;
         private System.Windows.Forms.DateTimePicker msExpiryDate;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
