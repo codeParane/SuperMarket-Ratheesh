@@ -77,13 +77,27 @@ namespace SuperMarketMS
         }
         private void cmbStocksItem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string qGetStocks = "SELECT s.barcode, i.name, i.category, s.qty FROM items AS i JOIN stocks " +
+            if(cmbMgStocksItem.Text == "ALL")
+            {
+                MessageBox.Show("ok");
+              //  string qGetStocks = "SELECT s.barcode, i.name, i.category, s.qty FROM items AS i JOIN stocks " +
+              //"AS s ON i.id = s.itemid WHERE i.category = '" + cmbStoksItemCat.Text + "'; ";
+              //  MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+              //  DataSet ds = new DataSet();
+              //  aGetStocks.Fill(ds, "Stocks3");
+              //  dgvStocks.DataSource = ds.Tables["Stocks3"];
+            }
+            else
+            {
+                string qGetStocks = "SELECT s.barcode, i.name, i.category, s.qty FROM items AS i JOIN stocks " +
                 "AS s ON i.id = s.itemid WHERE i.category = '" + cmbStoksItemCat.Text + "' && i.name = '" +
                 cmbStocksItem.Text + "'; ";
-            MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
-            DataSet ds = new DataSet();
-            aGetStocks.Fill(ds, "Stocks");
-            dgvStocks.DataSource = ds.Tables["Stocks"];
+                MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+                DataSet ds = new DataSet();
+                aGetStocks.Fill(ds, "Stocks");
+                dgvStocks.DataSource = ds.Tables["Stocks"];
+            }
+            
         }
 
 
