@@ -77,7 +77,7 @@ namespace SuperMarketMS
         }
         private void cmbStocksItem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cmbMgStocksItem.Text == "ALL")
+            if(msCmbMgStocksItem.Text == "ALL")
             {
                 MessageBox.Show("ok");
               //  string qGetStocks = "SELECT s.barcode, i.name, i.category, s.qty FROM items AS i JOIN stocks " +
@@ -176,12 +176,12 @@ namespace SuperMarketMS
             decimal companyPrice = 0, sellingPrice = 0, quantity = 0;
             int discountP = 0;
 
-            if (msBarCode.Text != "" || cmbMgStocksItemCat.Text != "" || cmbMgStocksItem.Text != ""
+            if (msBarCode.Text != "" || msCmbMgStocksItemCat.Text != "" || msCmbMgStocksItem.Text != ""
                 || msCompanyPrice.Text != "" || msSellingPrice.Text != "")
             {
                 barcode = msBarCode.Text;
-                itemCategory = cmbMgStocksItemCat.Text;
-                item = cmbMgStocksItem.Text;
+                itemCategory = msCmbMgStocksItemCat.Text;
+                item = msCmbMgStocksItem.Text;
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text),2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text),2);
                 discountP = int.Parse(msDiscount.Text);
@@ -207,7 +207,8 @@ namespace SuperMarketMS
                 int queryAffected = cAddToBill.ExecuteNonQuery();
                 if (queryAffected > 0)
                 {
-                    MessageBox.Show("ok");
+                    MessageBox.Show("Stock Added!!!");
+                    msClear_Click("",e);
                 }
             }
         }
@@ -246,7 +247,8 @@ namespace SuperMarketMS
             int queryAffected = cAddToBill.ExecuteNonQuery();
             if(queryAffected > 0 )
             {
-                MessageBox.Show("ok");
+                MessageBox.Show("Items Added!!!");
+                button2_Click("",e);
             }
         }
 
@@ -269,6 +271,7 @@ namespace SuperMarketMS
 
         private void tpcManageStock_Enter_1(object sender, EventArgs e)
         {
+            msCmbMgStocksItemCat.Items.Clear();
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             string qCmbCatFill = "SELECT DISTINCT category FROM items;";
@@ -277,15 +280,17 @@ namespace SuperMarketMS
             aCmbCatFill.Fill(dt);
             foreach (DataRow row in dt.Rows)
             {
-                cmbMgStocksItemCat.Items.Add(row[0].ToString());
+                msCmbMgStocksItemCat.Items.Add(row[0].ToString());
             }
-            cmbMgStocksItemCat.SelectedIndex = 0;
+            msCmbMgStocksItemCat.SelectedIndex = 0;
         }
 
         private void cmbMgStocksItemCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbMgStocksItem.Items.Clear();
-            string selectedCat = cmbMgStocksItemCat.Text;
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            msCmbMgStocksItem.Items.Clear();
+            string selectedCat = msCmbMgStocksItemCat.Text;
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             string qCmbItemFill = "SELECT name FROM items WHERE category = '" + selectedCat + "';";
@@ -294,9 +299,38 @@ namespace SuperMarketMS
             aCmbItemFill.Fill(dt);
             foreach (DataRow row in dt.Rows)
             {
-                cmbMgStocksItem.Items.Add(row[0].ToString());
+                msCmbMgStocksItem.Items.Add(row[0].ToString());
             }
-            cmbMgStocksItem.SelectedIndex = 0;
+            msCmbMgStocksItem.SelectedIndex = 0;
+        }
+
+        private void msClear_Click(object sender, EventArgs e)
+        {
+            msBarCode.Clear();
+            msCmbMgStocksItem.SelectedIndex = 0;
+            msCmbMgStocksItemCat.SelectedIndex = 0;
+            msCompanyPrice.Text = "0.00";
+            msSellingPrice.Text = "0.00";
+            msDiscount.Text = "0";
+            msQuantity.Value = 1;
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            iItemName.Clear();
+            iItemCategory.SelectedIndex = 0;
+            iIsWeight.SelectedIndex = 1;
+        }
+
+        private void tpcManageStock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void msBarCode_TextChanged(object sender, EventArgs e)
+        {
+            msBarCode.Clear();
         }
     }
 }
