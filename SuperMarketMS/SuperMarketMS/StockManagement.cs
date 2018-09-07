@@ -318,7 +318,7 @@ namespace SuperMarketMS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            iItemName.Clear();
+            iItemName.Items.Clear();
             iItemCategory.SelectedIndex = 0;
             iIsWeight.SelectedIndex = 1;
         }
@@ -330,7 +330,27 @@ namespace SuperMarketMS
 
         private void msBarCode_TextChanged(object sender, EventArgs e)
         {
-            msBarCode.Clear();
+            //msBarCode.Clear();
+            //retrive stock if there is already
+            //MySqlCommand cmd = new MySqlCommand("SELECT id FROM items WHERE name='" + item + "'", dbconn.connection);
+            //dbconn.CloseConnection();
+            //dbconn.OpenConnection();
+            //MySqlDataReader reader = cmd.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    itemId = reader.GetString(0);
+            //}
+            //reader.Close();
+        }
+
+        private void msCompanyPrice_Enter(object sender, EventArgs e)
+        {
+            msCompanyPrice.Clear();
+        }
+
+        private void msSellingPrice_Enter(object sender, EventArgs e)
+        {
+            msSellingPrice.Clear();
         }
     }
 }

@@ -66,8 +66,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.iItemCategory = new System.Windows.Forms.ComboBox();
             this.iIsWeight = new System.Windows.Forms.ComboBox();
-            this.iItemName = new System.Windows.Forms.TextBox();
             this.tpcManageProducts = new System.Windows.Forms.TabPage();
+            this.iItemName = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tpcStocks.SuspendLayout();
             this.tpcStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).BeginInit();
@@ -86,11 +92,12 @@
             this.tpcStocks.Location = new System.Drawing.Point(0, 0);
             this.tpcStocks.Name = "tpcStocks";
             this.tpcStocks.SelectedIndex = 0;
-            this.tpcStocks.Size = new System.Drawing.Size(918, 559);
+            this.tpcStocks.Size = new System.Drawing.Size(1048, 630);
             this.tpcStocks.TabIndex = 0;
             // 
             // tpcStock
             // 
+            this.tpcStock.BackColor = System.Drawing.Color.Transparent;
             this.tpcStock.Controls.Add(this.label12);
             this.tpcStock.Controls.Add(this.label11);
             this.tpcStock.Controls.Add(this.cmbStocksItem);
@@ -100,10 +107,9 @@
             this.tpcStock.Location = new System.Drawing.Point(4, 41);
             this.tpcStock.Name = "tpcStock";
             this.tpcStock.Padding = new System.Windows.Forms.Padding(3);
-            this.tpcStock.Size = new System.Drawing.Size(910, 514);
+            this.tpcStock.Size = new System.Drawing.Size(1040, 585);
             this.tpcStock.TabIndex = 0;
             this.tpcStock.Text = "Stocks";
-            this.tpcStock.UseVisualStyleBackColor = true;
             this.tpcStock.Click += new System.EventHandler(this.tpcStock_Click);
             this.tpcStock.Enter += new System.EventHandler(this.tpcStock_Enter);
             // 
@@ -111,7 +117,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(26, 59);
+            this.label12.Location = new System.Drawing.Point(26, 62);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(48, 21);
             this.label12.TabIndex = 3;
@@ -133,7 +139,7 @@
             this.cmbStocksItem.FormattingEnabled = true;
             this.cmbStocksItem.Items.AddRange(new object[] {
             "-SELECT-"});
-            this.cmbStocksItem.Location = new System.Drawing.Point(149, 56);
+            this.cmbStocksItem.Location = new System.Drawing.Point(149, 59);
             this.cmbStocksItem.Name = "cmbStocksItem";
             this.cmbStocksItem.Size = new System.Drawing.Size(246, 29);
             this.cmbStocksItem.TabIndex = 2;
@@ -155,12 +161,13 @@
             this.dgvStocks.AllowUserToDeleteRows = false;
             this.dgvStocks.AllowUserToResizeRows = false;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -181,11 +188,18 @@
             this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvStocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStocks.Size = new System.Drawing.Size(707, 344);
+            this.dgvStocks.Size = new System.Drawing.Size(951, 471);
             this.dgvStocks.TabIndex = 1;
             // 
             // tpcManageStock
             // 
+            this.tpcManageStock.BackColor = System.Drawing.Color.Transparent;
+            this.tpcManageStock.Controls.Add(this.textBox2);
+            this.tpcManageStock.Controls.Add(this.textBox1);
+            this.tpcManageStock.Controls.Add(this.label14);
+            this.tpcManageStock.Controls.Add(this.label13);
+            this.tpcManageStock.Controls.Add(this.button4);
+            this.tpcManageStock.Controls.Add(this.button3);
             this.tpcManageStock.Controls.Add(this.msClear);
             this.tpcManageStock.Controls.Add(this.msAddToStock);
             this.tpcManageStock.Controls.Add(this.label5);
@@ -208,10 +222,9 @@
             this.tpcManageStock.Location = new System.Drawing.Point(4, 41);
             this.tpcManageStock.Name = "tpcManageStock";
             this.tpcManageStock.Padding = new System.Windows.Forms.Padding(3);
-            this.tpcManageStock.Size = new System.Drawing.Size(910, 514);
+            this.tpcManageStock.Size = new System.Drawing.Size(1040, 585);
             this.tpcManageStock.TabIndex = 1;
-            this.tpcManageStock.Text = "Add Stocks";
-            this.tpcManageStock.UseVisualStyleBackColor = true;
+            this.tpcManageStock.Text = "Manage Stocks";
             this.tpcManageStock.Click += new System.EventHandler(this.tpcManageStock_Click);
             this.tpcManageStock.Enter += new System.EventHandler(this.tpcManageStock_Enter_1);
             // 
@@ -370,6 +383,7 @@
             this.msSellingPrice.Text = "0.00";
             this.msSellingPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.msSellingPrice.TextChanged += new System.EventHandler(this.msSellingPrice_TextChanged);
+            this.msSellingPrice.Enter += new System.EventHandler(this.msSellingPrice_Enter);
             // 
             // msCompanyPrice
             // 
@@ -380,6 +394,7 @@
             this.msCompanyPrice.Text = "0.00";
             this.msCompanyPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.msCompanyPrice.TextChanged += new System.EventHandler(this.msCompanyPrice_TextChanged);
+            this.msCompanyPrice.Enter += new System.EventHandler(this.msCompanyPrice_Enter);
             // 
             // msBarCode
             // 
@@ -391,6 +406,8 @@
             // 
             // tpcProducts
             // 
+            this.tpcProducts.BackColor = System.Drawing.Color.Transparent;
+            this.tpcProducts.Controls.Add(this.iItemName);
             this.tpcProducts.Controls.Add(this.button2);
             this.tpcProducts.Controls.Add(this.button1);
             this.tpcProducts.Controls.Add(this.isWeight);
@@ -398,14 +415,12 @@
             this.tpcProducts.Controls.Add(this.label9);
             this.tpcProducts.Controls.Add(this.iItemCategory);
             this.tpcProducts.Controls.Add(this.iIsWeight);
-            this.tpcProducts.Controls.Add(this.iItemName);
             this.tpcProducts.Location = new System.Drawing.Point(4, 41);
             this.tpcProducts.Name = "tpcProducts";
             this.tpcProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.tpcProducts.Size = new System.Drawing.Size(910, 514);
+            this.tpcProducts.Size = new System.Drawing.Size(1040, 585);
             this.tpcProducts.TabIndex = 2;
             this.tpcProducts.Text = "Items";
-            this.tpcProducts.UseVisualStyleBackColor = true;
             this.tpcProducts.Click += new System.EventHandler(this.tpcProducts_Click);
             this.tpcProducts.Enter += new System.EventHandler(this.tpcProducts_Enter);
             // 
@@ -483,30 +498,86 @@
             this.iIsWeight.Size = new System.Drawing.Size(180, 29);
             this.iIsWeight.TabIndex = 8;
             // 
-            // iItemName
-            // 
-            this.iItemName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iItemName.Location = new System.Drawing.Point(191, 21);
-            this.iItemName.Name = "iItemName";
-            this.iItemName.Size = new System.Drawing.Size(180, 29);
-            this.iItemName.TabIndex = 6;
-            // 
             // tpcManageProducts
             // 
             this.tpcManageProducts.Location = new System.Drawing.Point(4, 41);
             this.tpcManageProducts.Name = "tpcManageProducts";
             this.tpcManageProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.tpcManageProducts.Size = new System.Drawing.Size(910, 514);
+            this.tpcManageProducts.Size = new System.Drawing.Size(1040, 585);
             this.tpcManageProducts.TabIndex = 3;
             this.tpcManageProducts.Text = "Manage Items";
             this.tpcManageProducts.UseVisualStyleBackColor = true;
+            // 
+            // iItemName
+            // 
+            this.iItemName.FormattingEnabled = true;
+            this.iItemName.Location = new System.Drawing.Point(191, 9);
+            this.iItemName.Name = "iItemName";
+            this.iItemName.Size = new System.Drawing.Size(121, 40);
+            this.iItemName.TabIndex = 14;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(255, 331);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(123, 70);
+            this.button4.TabIndex = 12;
+            this.button4.Text = "Delete Stock";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(384, 331);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 70);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Update Stock";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(300, 238);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 21);
+            this.label13.TabIndex = 13;
+            this.label13.Text = "In Hand";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(448, 238);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(42, 21);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Total";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(370, 236);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(72, 29);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.Text = "0";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(496, 235);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(72, 29);
+            this.textBox2.TabIndex = 16;
+            this.textBox2.Text = "0";
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // StockManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(922, 559);
+            this.ClientSize = new System.Drawing.Size(1060, 673);
             this.Controls.Add(this.tpcStocks);
             this.Name = "StockManagement";
             this.Text = "StockManagement";
@@ -557,10 +628,16 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox iItemCategory;
         private System.Windows.Forms.ComboBox iIsWeight;
-        private System.Windows.Forms.TextBox iItemName;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox iItemName;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
