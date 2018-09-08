@@ -316,6 +316,8 @@ namespace SuperMarketMS
         private void msClear_Click(object sender, EventArgs e)
         {
             msBarCode.Clear();
+            msCmbMgStocksItem.Items.Add("-SELECT-");
+            msCmbMgStocksItemCat.Items.Add("-SELECT-");
             msCmbMgStocksItem.SelectedIndex = 0;
             msCmbMgStocksItemCat.SelectedIndex = 0;
             msCompanyPrice.Text = "0.00";
@@ -371,15 +373,18 @@ namespace SuperMarketMS
             reader.Close();
             if(item != "")
             {
-                msCmbMgStocksItem.SelectedText = item;
-                msCmbMgStocksItemCat.SelectedText = itemCat;
+                //msCmbMgStocksItemCat.Items.Add("-SELECT-");
+                //msCmbMgStocksItem.Items.Add("-SELECT-");
+                //msCmbMgStocksItemCat.SelectedIndex = 0;
+                //msCmbMgStocksItem.SelectedIndex = 0;
+                msCmbMgStocksItem.SelectedItem = item;
+                msCmbMgStocksItemCat.SelectedItem = itemCat;
                 msCompanyPrice.Text = compPrice;
                 msSellingPrice.Text = selPrice;
                 msDiscount.Text = discount;
                 msQuantity.Value = int.Parse(qty);
-                int yr = int.Parse(expDate.Substring(0, 4)), mo = int.Parse(expDate.Substring(5, 2)), da = int.Parse(expDate.Substring(8, 2));
-                msExpiryDate.Value = new DateTime(yr, mo, da);
-
+                //int yr = int.Parse(expDate.Substring(0, 4)), mo = int.Parse(expDate.Substring(5, 2)), da = int.Parse(expDate.Substring(8, 2));
+                //msExpiryDate.Value = new DateTime(yr, mo, da);
             }
         }
 
@@ -395,7 +400,17 @@ namespace SuperMarketMS
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //delete 
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qAddToBill = "delete from stocks where barcode = '"+ msBarCode.Text +"'";
+            MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+            int queryAffected = cAddToBill.ExecuteNonQuery();
+            if (queryAffected > 0)
+            {
+                MessageBox.Show("Items Deleted!!!");
+                msClear_Click("", e);
+
+            }
         }
     }
 }
