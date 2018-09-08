@@ -32,6 +32,7 @@ namespace SuperMarketMS
             {
                 cmbStoksItemCat.Items.Add(row[0].ToString());
             }
+            
         }
         private void cmbItemCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -271,37 +272,51 @@ namespace SuperMarketMS
 
         private void tpcManageStock_Enter_1(object sender, EventArgs e)
         {
+            //MessageBox.Show("ok");
+
             msCmbMgStocksItemCat.Items.Clear();
+            msCmbMgStocksItemCat.Items.Add("-SELECT-");
             dbconn.CloseConnection();
             dbconn.OpenConnection();
-            string qCmbCatFill = "SELECT DISTINCT category FROM items;";
-            MySqlDataAdapter aCmbCatFill = new MySqlDataAdapter(qCmbCatFill, dbconn.connection);
+            string qcmbcatfill = "select distinct category from items;";
+            MySqlDataAdapter acmbcatfill = new MySqlDataAdapter(qcmbcatfill, dbconn.connection);
             DataTable dt = new DataTable();
-            aCmbCatFill.Fill(dt);
+            acmbcatfill.Fill(dt);
             foreach (DataRow row in dt.Rows)
             {
                 msCmbMgStocksItemCat.Items.Add(row[0].ToString());
             }
             msCmbMgStocksItemCat.SelectedIndex = 0;
+            
+            
         }
 
         private void cmbMgStocksItemCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            msCmbMgStocksItem.Items.Clear();
-            string selectedCat = msCmbMgStocksItemCat.Text;
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qCmbItemFill = "SELECT name FROM items WHERE category = '" + selectedCat + "';";
-            MySqlDataAdapter aCmbItemFill = new MySqlDataAdapter(qCmbItemFill, dbconn.connection);
-            DataTable dt = new DataTable();
-            aCmbItemFill.Fill(dt);
-            foreach (DataRow row in dt.Rows)
+            if (msCmbMgStocksItemCat.Text == "-SELECT-")
             {
-                msCmbMgStocksItem.Items.Add(row[0].ToString());
+                msCmbMgStocksItem.Enabled = false;
             }
-            msCmbMgStocksItem.SelectedIndex = 0;
+            else
+            {
+                msCmbMgStocksItem.Enabled = true;
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                msCmbMgStocksItem.Items.Clear();
+                msCmbMgStocksItem.Items.Add("-SELECT-");
+                msCmbMgStocksItem.SelectedIndex = 0;
+                string selectedCat = msCmbMgStocksItemCat.Text;
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                string qCmbItemFill = "SELECT name FROM items WHERE category = '" + selectedCat + "';";
+                MySqlDataAdapter aCmbItemFill = new MySqlDataAdapter(qCmbItemFill, dbconn.connection);
+                DataTable dt = new DataTable();
+                aCmbItemFill.Fill(dt);
+                foreach (DataRow row in dt.Rows)
+                {
+                    msCmbMgStocksItem.Items.Add(row[0].ToString());
+                }
+            }
         }
 
         private void msClear_Click(object sender, EventArgs e)
@@ -330,17 +345,48 @@ namespace SuperMarketMS
 
         private void msBarCode_TextChanged(object sender, EventArgs e)
         {
-            //msBarCode.Clear();
-            //retrive stock if there is already
-            //MySqlCommand cmd = new MySqlCommand("SELECT id FROM items WHERE name='" + item + "'", dbconn.connection);
-            //dbconn.CloseConnection();
-            //dbconn.OpenConnection();
-            //MySqlDataReader reader = cmd.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    itemId = reader.GetString(0);
-            //}
-            //reader.Close();
+            string itemCat = "";
+            string item = "";
+            string compPrice = "";
+            string selPrice = "";
+            string discount = "";
+            string qty = "";
+            string expDate = "";
+
+            MySqlCommand cmd = new MySqlCommand("select i.name, i.category, s.companyPrice, s.sellingPrice, s.discount, s.qty," + 
+                "s.expiry from items as i join stocks as s on i.id = s.itemid WHERE s.barcode = '"+ msBarCode.Text +"';", dbconn.connection);
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            MySqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                
+                while (reader.Read())
+                {
+                   
+                        item = reader.GetString(0);
+                        itemCat = reader.GetString(1);
+                        compPrice = reader.GetString(2);
+                        selPrice = reader.GetString(3);
+                        discount = reader.GetString(4);
+                        qty = reader.GetString(5);
+                        expDate = reader.GetString(6);
+                    
+                }
+            }     
+            reader.Close();
+            if(item != "")
+            {
+                msCmbMgStocksItem.SelectedText = item;
+                msCmbMgStocksItemCat.SelectedText = itemCat;
+                msCompanyPrice.Text = compPrice;
+                msSellingPrice.Text = selPrice;
+                msDiscount.Text = discount;
+                msQuantity.Value = int.Parse(qty);
+                int yr = int.Parse(expDate.Substring(0, 4)), mo = int.Parse(expDate.Substring(5, 2)), da = int.Parse(expDate.Substring(8, 2));
+                msExpiryDate.Value = new DateTime(yr, mo, da);
+
+            }
         }
 
         private void msCompanyPrice_Enter(object sender, EventArgs e)
