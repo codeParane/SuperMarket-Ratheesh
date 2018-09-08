@@ -216,18 +216,12 @@ namespace SuperMarketMS
 
         private void msCompanyPrice_TextChanged(object sender, EventArgs e)
         {
-            if(msCompanyPrice.Text == "")
-            {
-                msCompanyPrice.Text = "0.00";
-            }
+           
         }
 
         private void msSellingPrice_TextChanged(object sender, EventArgs e)
         {
-            if(msSellingPrice.Text == "")
-            {
-                msSellingPrice.Text = "0.00";
-            }
+          
         }
 
         private void StockManagement_Load(object sender, EventArgs e)
@@ -397,6 +391,11 @@ namespace SuperMarketMS
         private void msSellingPrice_Enter(object sender, EventArgs e)
         {
             msSellingPrice.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //delete 
         }
     }
 }
