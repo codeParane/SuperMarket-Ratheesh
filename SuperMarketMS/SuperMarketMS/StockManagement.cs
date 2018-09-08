@@ -150,7 +150,7 @@ namespace SuperMarketMS
 
         private void txtStocks_ValueChanged(object sender, EventArgs e)
         {
-
+            msStockTotal.Text = (msQuantity.Value + int.Parse(msInHand.Text)).ToString();
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
@@ -186,7 +186,7 @@ namespace SuperMarketMS
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text),2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text),2);
                 discountP = int.Parse(msDiscount.Text);
-                quantity = decimal.Parse(msQuantity.Text);
+                quantity = decimal.Parse(msStockTotal.Text);
                 expiryDate = msExpiryDate.Text;
 
                 //MessageBox.Show("Not Completed Details!!!!");
@@ -324,6 +324,8 @@ namespace SuperMarketMS
             msSellingPrice.Text = "0.00";
             msDiscount.Text = "0";
             msQuantity.Value = 1;
+            msStockTotal.Text = "0";
+            msInHand.Text = "0";
 
         }
 
@@ -369,20 +371,28 @@ namespace SuperMarketMS
                         expDate = reader.GetString(6);
                     
                 }
+            }
+            else
+            {
+                msCmbMgStocksItemCat.SelectedItem = "-SELECT-";
+                msCompanyPrice.Text = "0.00";
+                msSellingPrice.Text = "0.00";
+                msDiscount.Text = "0";
+                msInHand.Text = "0";
+                msStockTotal.Text = "0";
+                msAddToStock.Enabled = true;
             }     
             reader.Close();
             if(item != "")
             {
-                //msCmbMgStocksItemCat.Items.Add("-SELECT-");
-                //msCmbMgStocksItem.Items.Add("-SELECT-");
-                //msCmbMgStocksItemCat.SelectedIndex = 0;
-                //msCmbMgStocksItem.SelectedIndex = 0;
-                msCmbMgStocksItem.SelectedItem = item;
+                //MessageBox.Show(item + itemCat);
+                msAddToStock.Enabled = false;
                 msCmbMgStocksItemCat.SelectedItem = itemCat;
+                msCmbMgStocksItem.SelectedItem = item;
                 msCompanyPrice.Text = compPrice;
                 msSellingPrice.Text = selPrice;
                 msDiscount.Text = discount;
-                msQuantity.Value = int.Parse(qty);
+                msInHand.Text = qty;
                 //int yr = int.Parse(expDate.Substring(0, 4)), mo = int.Parse(expDate.Substring(5, 2)), da = int.Parse(expDate.Substring(8, 2));
                 //msExpiryDate.Value = new DateTime(yr, mo, da);
             }
@@ -411,6 +421,55 @@ namespace SuperMarketMS
                 msClear_Click("", e);
 
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string barcode = "", itemCategory = "", item = "", expiryDate = "";
+            decimal companyPrice = 0, sellingPrice = 0, quantity = 0;
+            int discountP = 0;
+
+            if (msBarCode.Text != "" || msCmbMgStocksItemCat.Text != "" || msCmbMgStocksItem.Text != ""
+                || msCompanyPrice.Text != "" || msSellingPrice.Text != "")
+            {
+                barcode = msBarCode.Text;
+                itemCategory = msCmbMgStocksItemCat.Text;
+                item = msCmbMgStocksItem.Text;
+                companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text), 2);
+                sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text), 2);
+                discountP = int.Parse(msDiscount.Text);
+                quantity = decimal.Parse(msStockTotal.Text);
+                expiryDate = msExpiryDate.Text;
+
+                //MessageBox.Show("Not Completed Details!!!!");
+
+                string itemId = "";
+                MySqlCommand cmd = new MySqlCommand("SELECT id FROM items WHERE name='" + item + "'", dbconn.connection);
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    itemId = reader.GetString(0);
+                }
+                reader.Close();
+                string qAddToBill = "UPDATE stocks SET itemid='" + itemId + "', companyPrice=" + companyPrice + ", sellingPrice = " +
+                    sellingPrice + ", discount = " + discountP + ", qty = " + quantity + ", expiry= '" + expiryDate +
+                    "' WHERE barcode = '" + barcode + "';";
+                MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+                int queryAffected = cAddToBill.ExecuteNonQuery();
+                if (queryAffected > 0)
+                {
+                    MessageBox.Show("Stock Updated!!!");
+                    msClear_Click("", e);
+                }
+
+            }
+        }
+
+        private void msInHand_TextChanged(object sender, EventArgs e)
+        {
+            msStockTotal.Text = (msQuantity.Value + int.Parse(msInHand.Text)).ToString();
         }
     }
 }
