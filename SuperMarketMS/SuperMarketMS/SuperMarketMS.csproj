@@ -102,6 +102,12 @@
     <Compile Include="StockManagement.Designer.cs">
       <DependentUpon>StockManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="viewDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="viewDashboard.Designer.cs">
+      <DependentUpon>viewDashboard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StockManagement.resx">
       <DependentUpon>StockManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viewDashboard.resx">
+      <DependentUpon>viewDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
