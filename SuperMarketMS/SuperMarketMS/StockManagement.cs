@@ -155,14 +155,43 @@ namespace SuperMarketMS
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            if (msDiscount.Text == "")
-            {
-                msDiscount.Text = "0";
+            if(msDiscount.Text != "") { 
+                Decimal disCash = 0;
+                decimal disPer = 0;
+                string disValue = msDiscount.Text;
+                if (disValue.Substring(disValue.Length - 1) == "%" && disValue != "0")
+                {
+                    if (decimal.Parse(disValue.Remove(disValue.Length - 1)) >= 100 || decimal.Parse(disValue.Remove(disValue.Length - 1)) < 0)
+                    {
+                        MessageBox.Show("Wrong Discount Percentage!!!");
+                        msDiscount.Text = "0";
+                    }
+                    else
+                    {
+                        disCash = Math.Round(decimal.Parse(msSellingPrice.Text) * decimal.Parse(disValue.Remove(disValue.Length - 1)) / 100, 2);
+                        msDiscountFinal.Text = disCash.ToString();
+                        msDiscountPer.Text = msDiscount.Text;
+                    }
+                }
+                else if(disValue.Substring(disValue.Length - 1) != "%" && disValue != "0")
+                {
+                    if (decimal.Parse(disValue) < 0)
+                    {
+                        MessageBox.Show("Wrong Discount Amount!!!");
+                        msDiscount.Text = "0";
+                    }
+                    else
+                    {
+                        disPer = Math.Round(decimal.Parse(disValue) / decimal.Parse(msSellingPrice.Text) * 100, 2);
+                        msDiscountFinal.Text = msDiscount.Text;
+                        msDiscountPer.Text = disPer.ToString();
+                    }
+                }
             }
-            if (int.Parse(msDiscount.Text) >= 100 || int.Parse(msDiscount.Text) < 0)
+            else
             {
-                MessageBox.Show("Wrong Discount Percentage!!!");
-                msDiscount.Text = "0";
+                msDiscountFinal.Text = "0";
+                msDiscountPer.Text = "0%";
             }
         }
 
@@ -175,7 +204,7 @@ namespace SuperMarketMS
         {
             string barcode = "", itemCategory = "", item = "", expiryDate="";
             decimal companyPrice = 0, sellingPrice = 0, quantity = 0;
-            int discountP = 0;
+            decimal discountP = 0;
 
             if (msBarCode.Text != "" || msCmbMgStocksItemCat.Text != "" || msCmbMgStocksItem.Text != ""
                 || msCompanyPrice.Text != "" || msSellingPrice.Text != "")
@@ -185,7 +214,7 @@ namespace SuperMarketMS
                 item = msCmbMgStocksItem.Text;
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text),2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text),2);
-                discountP = int.Parse(msDiscount.Text);
+                discountP = decimal.Parse(msDiscountFinal.Text);
                 quantity = decimal.Parse(msStockTotal.Text);
                 expiryDate = msExpiryDate.Text;
 
@@ -251,17 +280,31 @@ namespace SuperMarketMS
         {
             //Add Items form load event
             iIsWeight.SelectedIndex = 1;
+
+            iItemCategory.Items.Clear();
+            iItemName.Items.Clear();
             dbconn.CloseConnection();
             dbconn.OpenConnection();
-            string qCmbItemCategoryFill = "SELECT DISTINCT category FROM items;";
-            MySqlDataAdapter aCmbItemCategoryFill = new MySqlDataAdapter(qCmbItemCategoryFill, dbconn.connection);
-            DataSet ds1 = new DataSet();
-            aCmbItemCategoryFill.Fill(ds1, "cmbCategories");
+            string qCmbItemFill = "SELECT DISTINCT category FROM items;";
+            MySqlDataAdapter aCmbItemFill = new MySqlDataAdapter(qCmbItemFill, dbconn.connection);
+            DataTable dt1 = new DataTable();
+            aCmbItemFill.Fill(dt1);
+            foreach (DataRow row in dt1.Rows)
+            {
+                iItemCategory.Items.Add(row[0].ToString());
+            }
 
-            iItemCategory.DataSource = ds1.Tables["cmbCategories"].DefaultView;
-            iItemCategory.DisplayMember = "category";
-            iItemCategory.BindingContext = this.BindingContext;
-           
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qCmbItemFill1 = "SELECT DISTINCT name FROM items;";
+            MySqlDataAdapter aCmbItemFill1 = new MySqlDataAdapter(qCmbItemFill1, dbconn.connection);
+            DataTable dt11 = new DataTable();
+            aCmbItemFill1.Fill(dt11);
+            foreach (DataRow row in dt11.Rows)
+            {
+                iItemName.Items.Add(row[0].ToString());
+            }
+
         }
 
         private void tpcManageStock_Enter_1(object sender, EventArgs e)
@@ -323,15 +366,20 @@ namespace SuperMarketMS
             msCompanyPrice.Text = "0.00";
             msSellingPrice.Text = "0.00";
             msDiscount.Text = "0";
-            msQuantity.Value = 1;
+            msQuantity.Value = 0;
             msStockTotal.Text = "0";
             msInHand.Text = "0";
+            msDiscountFinal.Text ="0";
+            msDiscountPer.Text = "0%";
+            msExpiryDate.Value = DateTime.Now;
+
+
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            iItemName.Items.Clear();
+            iItemName.Text = "";
             iItemCategory.SelectedIndex = 0;
             iIsWeight.SelectedIndex = 1;
         }
@@ -427,7 +475,7 @@ namespace SuperMarketMS
         {
             string barcode = "", itemCategory = "", item = "", expiryDate = "";
             decimal companyPrice = 0, sellingPrice = 0, quantity = 0;
-            int discountP = 0;
+            decimal discountP = 0;
 
             if (msBarCode.Text != "" || msCmbMgStocksItemCat.Text != "" || msCmbMgStocksItem.Text != ""
                 || msCompanyPrice.Text != "" || msSellingPrice.Text != "")
@@ -438,7 +486,7 @@ namespace SuperMarketMS
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text), 2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text), 2);
                 discountP = int.Parse(msDiscount.Text);
-                quantity = decimal.Parse(msStockTotal.Text);
+                quantity = decimal.Parse(msDiscountFinal.Text);
                 expiryDate = msExpiryDate.Text;
 
                 //MessageBox.Show("Not Completed Details!!!!");
@@ -470,6 +518,22 @@ namespace SuperMarketMS
         private void msInHand_TextChanged(object sender, EventArgs e)
         {
             msStockTotal.Text = (msQuantity.Value + int.Parse(msInHand.Text)).ToString();
+        }
+
+        private void msDiscount_Enter(object sender, EventArgs e)
+        {
+            msDiscount.Clear();
+        }
+
+        private void msDiscount_Leave(object sender, EventArgs e)
+        {
+        
+            if (msDiscount.Text == "" || msDiscount.Text == "%" || msDiscount.Text == "0%")
+            {
+                msDiscount.Text = "0";
+            }
+
+            
         }
     }
 }
