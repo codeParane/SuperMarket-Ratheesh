@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SuperMarketMS
 {
@@ -87,7 +88,9 @@ namespace SuperMarketMS
                         txtDisAmount.Text = "0";
                         txtNetAmount.Text = selPrice.ToString();
                     }
-                    pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\" + id + ".jpg");
+                    //string n = @"D:\Resources\ItemImage\" + id + ".jpg";
+                    //pboItemImage.Image = File.Exists(Image.FromFile(n)) ?
+                    //    Image.FromFile(@"D:\Resources\ItemImage\" + id + ".jpg") : Image.FromFile(@"D:\Resources\ItemImage\default.jpg");
                 }
             }
         }
@@ -171,8 +174,11 @@ namespace SuperMarketMS
             {
                 while (dr_getProduct.Read())
                 {
-                    totalDis = decimal.Parse(dr_getProduct["dis"]);
-                    totalNet = decimal.Parse(dr_getProduct["net"]);
+                    lblGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
+                    lblDiscount.Text = dr_getProduct["dis"].ToString();
+                    lblTotal.Text = dr_getProduct["net"].ToString();
+                    //totalDis = decimal.Parse(dr_getProduct["dis"]);
+                    //totalNet = decimal.Parse(dr_getProduct["net"]);
                 }
             }
 
