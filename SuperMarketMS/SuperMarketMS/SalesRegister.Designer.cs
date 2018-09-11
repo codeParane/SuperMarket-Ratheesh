@@ -34,12 +34,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNetAmount = new System.Windows.Forms.TextBox();
             this.txtDisAmount = new System.Windows.Forms.TextBox();
-            this.txtDisPercentage = new System.Windows.Forms.TextBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.txtSelling = new System.Windows.Forms.TextBox();
             this.txtQty = new System.Windows.Forms.TextBox();
@@ -65,12 +63,10 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtNetAmount);
             this.groupBox1.Controls.Add(this.txtDisAmount);
-            this.groupBox1.Controls.Add(this.txtDisPercentage);
             this.groupBox1.Controls.Add(this.txtItemName);
             this.groupBox1.Controls.Add(this.txtSelling);
             this.groupBox1.Controls.Add(this.txtQty);
@@ -132,16 +128,6 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Discount Amount";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(125, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 17);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Discount %";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -177,14 +163,6 @@
             this.txtDisAmount.Name = "txtDisAmount";
             this.txtDisAmount.Size = new System.Drawing.Size(113, 25);
             this.txtDisAmount.TabIndex = 1;
-            // 
-            // txtDisPercentage
-            // 
-            this.txtDisPercentage.Enabled = false;
-            this.txtDisPercentage.Location = new System.Drawing.Point(125, 103);
-            this.txtDisPercentage.Name = "txtDisPercentage";
-            this.txtDisPercentage.Size = new System.Drawing.Size(73, 25);
-            this.txtDisPercentage.TabIndex = 1;
             // 
             // txtItemName
             // 
@@ -242,6 +220,7 @@
             this.button1.TabStop = false;
             this.button1.Text = "Pay";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -283,7 +262,7 @@
             // 
             this.lblGross.AutoSize = true;
             this.lblGross.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGross.Location = new System.Drawing.Point(6, 49);
+            this.lblGross.Location = new System.Drawing.Point(74, 49);
             this.lblGross.Name = "lblGross";
             this.lblGross.Size = new System.Drawing.Size(41, 21);
             this.lblGross.TabIndex = 1;
@@ -293,7 +272,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(6, 119);
+            this.lblTotal.Location = new System.Drawing.Point(74, 115);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(41, 21);
             this.lblTotal.TabIndex = 1;
@@ -303,7 +282,7 @@
             // 
             this.lblDiscount.AutoSize = true;
             this.lblDiscount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiscount.Location = new System.Drawing.Point(6, 82);
+            this.lblDiscount.Location = new System.Drawing.Point(74, 82);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(41, 21);
             this.lblDiscount.TabIndex = 1;
@@ -345,11 +324,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNetAmount;
         private System.Windows.Forms.TextBox txtDisAmount;
-        private System.Windows.Forms.TextBox txtDisPercentage;
         private System.Windows.Forms.TextBox txtSelling;
         private System.Windows.Forms.PictureBox pboItemImage;
         private System.Windows.Forms.DataGridView dgvCurrentBill;

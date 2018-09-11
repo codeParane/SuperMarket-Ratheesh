@@ -535,5 +535,10 @@ namespace SuperMarketMS
 
             
         }
+
+        private void msQuantity_Enter(object sender, EventArgs e)
+        {
+            //msQuantity.Clear();
+        }
     }
 }

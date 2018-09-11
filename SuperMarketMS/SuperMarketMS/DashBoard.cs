@@ -38,18 +38,65 @@ namespace SuperMarketMS
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            //while
-            viewDashboard l = new viewDashboard();
-            l.TopLevel = false;
-            dbFrmContainer.Controls.Add(l);
-            l.Show();
-            //dbFrmContainer.md
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
+
 
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void bunifuFlatButton2_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
+            StockManagement l = new StockManagement();
+            l.TopLevel = false;
+            dbFrmContainer.Controls.Add(l);
+            l.Show();
+        }
+
+        private void bunifuFlatButton3_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
+            SalesRegister l = new SalesRegister();
+            l.TopLevel = false;
+            dbFrmContainer.Controls.Add(l);
+            l.Show();
+        }
+
+        private void bunifuFlatButton6_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
+        }
+
+        private void bunifuFlatButton5_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
+        }
+
+        private void bunifuFlatButton4_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
         }
     }
 }

@@ -38,9 +38,8 @@ namespace SuperMarketMS
             string name = "";
             decimal cmpPrice = 0;
             decimal selPrice = 0;
-            decimal discountPercentage = 0;
-            txtItemName.Clear(); txtSelling.Clear(); txtDisPercentage.Clear();
-            txtDisPercentage.Clear(); txtDisAmount.Clear(); txtNetAmount.Clear();
+            decimal disAmount = 0;
+            txtItemName.Clear(); txtSelling.Clear();  txtDisAmount.Clear(); txtNetAmount.Clear();
             pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\default.png");
 
             if (txtItemCode.Text != "")
@@ -70,16 +69,16 @@ namespace SuperMarketMS
                         name = dr_getProduct["name"].ToString();
                         cmpPrice = decimal.Parse(dr_getProduct["cmpprice"].ToString());
                         selPrice = decimal.Parse(dr_getProduct["selprice"].ToString());
-                        discountPercentage = decimal.Parse(dr_getProduct["discount"].ToString());
+                        disAmount = decimal.Parse(dr_getProduct["discount"].ToString());
                     }
                     dbconn.CloseConnection();
                     txtItemName.Text = name;
                     txtSelling.Text = selPrice.ToString();
-                    txtDisPercentage.Text = discountPercentage.ToString();
-                    if (discountPercentage > 0)
+                    
+                    if (disAmount > 0)
                     {
-                        discountPercentage = discountPercentage / 100;
-                        decimal disAmount = Math.Round(decimal.Multiply(selPrice, discountPercentage), 2);
+                        //discountPercentage = discountPercentage / 100;
+                        //decimal disAmount = Math.Round(decimal.Multiply(selPrice, discountPercentage), 2);
                         txtDisAmount.Text = disAmount.ToString();
                         txtNetAmount.Text = (selPrice - disAmount).ToString();
                     }
@@ -123,29 +122,33 @@ namespace SuperMarketMS
 
         private void txtQty_Leave(object sender, EventArgs e)
         {
-            if(txtQty.Text == null)
+            if(txtQty.Text == null || txtQty.Text == "")
             {
                 txtQty.Text = "0";
             }
 
-            if (txtItemName.Text != "" && decimal.Parse(txtQty.Text) > 0 && txtItemCode.Text != "")
+            if (txtItemName.Text != "" && txtQty.Text != "" && txtItemCode.Text != "")
             {
-                MessageBox.Show("as");
-                string itemcode = txtItemCode.Text;
-                string itemName = txtItemName.Text;
-                decimal qty = Math.Round(decimal.Parse(txtQty.Text), 3);
-                decimal rate = Math.Round(decimal.Parse(txtSelling.Text), 2);
-                string discount = txtDisPercentage.Text; 
-                decimal disAmount = decimal.Parse(txtDisAmount.Text);
-                decimal netAmount = Math.Round(decimal.Parse(txtNetAmount.Text), 2);
-                decimal netTotal = Math.Round((qty * netAmount),2);
+                if(decimal.Parse(txtQty.Text) > 0)
+                {
+              
+                    string itemcode = txtItemCode.Text;
+                    string itemName = txtItemName.Text;
+                    decimal qty = Math.Round(decimal.Parse(txtQty.Text), 3);
+                    decimal rate = Math.Round(decimal.Parse(txtSelling.Text), 2);
+                    //string discount = txtDisPercentage.Text;
+                    decimal disAmount = decimal.Parse(txtDisAmount.Text);
+                    decimal netAmount = Math.Round(decimal.Parse(txtNetAmount.Text), 2);
+                    decimal netTotal = Math.Round((qty * netAmount), 2);
 
-                string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
-                    "," + rate + "," + discount + ", " + disAmount + ", "  + netTotal + ");";
-                dbconn.CloseConnection();
-                dbconn.OpenConnection();
-                MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
-                int queryAffected = cAddToBill.ExecuteNonQuery();
+                    string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
+                        "," + rate + ", " + disAmount + ", " + netTotal + ");";
+                    dbconn.CloseConnection();
+                    dbconn.OpenConnection();
+                    MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+                    int queryAffected = cAddToBill.ExecuteNonQuery();
+                }
+                    
             }
             dbconn.CloseConnection();
             dbconn.OpenConnection();
@@ -158,9 +161,26 @@ namespace SuperMarketMS
             txtQty.Clear();
             txtItemCode.Focus();
 
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qr_getProduct = "SELECT sum(disa) AS dis, sum(net) AS net FROM sm.currentbill;";
+            MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
+            MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
+            
+            if (dr_getProduct.HasRows == true)
+            {
+                while (dr_getProduct.Read())
+                {
+                    totalDis = decimal.Parse(dr_getProduct["dis"]);
+                    totalNet = decimal.Parse(dr_getProduct["net"]);
+                }
+            }
 
 
-        }
+
+
+
+            }
 
         private void SalesRegister_Leave(object sender, EventArgs e)
         {
@@ -174,6 +194,11 @@ namespace SuperMarketMS
             MainForm mf = new MainForm();
             mf.Show();
             fm.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }
