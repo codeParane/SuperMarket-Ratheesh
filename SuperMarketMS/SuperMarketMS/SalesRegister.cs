@@ -203,7 +203,12 @@ namespace SuperMarketMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //
+            
+            PayForSales ps = new PayForSales();
+            ps.Show();
+            PayOption po = new PayOption();
+            po.MdiParent = ps;
+            po.Show();
         }
     }
 }
