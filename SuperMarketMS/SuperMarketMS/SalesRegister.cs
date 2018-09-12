@@ -31,7 +31,7 @@ namespace SuperMarketMS
         {
     
         }
-
+        public string isWeight = "";
         private void txtItemCode_TextChanged(object sender, EventArgs e)
         {
             string barCode = "";
@@ -57,7 +57,7 @@ namespace SuperMarketMS
             {
                 dbconn.CloseConnection();
                 dbconn.OpenConnection();
-                string qr_getProduct = "SELECT i.id AS id, i.name AS name, s.companyprice AS cmpprice,s.sellingprice as selprice, s.discount AS discount, s.qty FROM" +
+                string qr_getProduct = "SELECT i.id AS id, i.name AS name,i.weight as isWeight, s.companyprice AS cmpprice,s.sellingprice as selprice, s.discount AS discount, s.qty FROM" +
                     " stocks AS s JOIN items AS i ON s.itemid = i.id WHERE s.barcode = " + barCode + ";";
                 MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
                     MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
@@ -71,6 +71,7 @@ namespace SuperMarketMS
                         cmpPrice = decimal.Parse(dr_getProduct["cmpprice"].ToString());
                         selPrice = decimal.Parse(dr_getProduct["selprice"].ToString());
                         disAmount = decimal.Parse(dr_getProduct["discount"].ToString());
+                        isWeight = dr_getProduct["isWeight"].ToString();
                     }
                     dbconn.CloseConnection();
                     txtItemName.Text = name;
@@ -141,7 +142,15 @@ namespace SuperMarketMS
                     //string discount = txtDisPercentage.Text;
                     decimal disAmount = decimal.Parse(txtDisAmount.Text);
                     decimal netAmount = Math.Round(decimal.Parse(txtNetAmount.Text), 2);
-                    decimal netTotal = Math.Round((qty * netAmount), 2);
+                    //if(isWeight == "true")
+                    //{
+                    //    decimal netTotal = Math.Round((qty * netAmount), 2);
+                    //}
+                    //else
+                    //{
+                        decimal netTotal = Math.Round((qty * netAmount), 2);
+                    //}
+
 
                     string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
                         "," + rate + ", " + disAmount + ", " + netTotal + ");";
@@ -203,7 +212,6 @@ namespace SuperMarketMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             PayForSales ps = new PayForSales();
             ps.Show();
             PayOption po = new PayOption();

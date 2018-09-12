@@ -59,5 +59,10 @@ namespace SuperMarketMS
                 poTotalDisCash.Text = "0";
             }
         }
+
+        private void PayOption_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

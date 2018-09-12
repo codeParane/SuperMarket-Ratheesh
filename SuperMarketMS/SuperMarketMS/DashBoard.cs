@@ -31,7 +31,7 @@ namespace SuperMarketMS
         }
         private void tmrDateTime_Tick(object sender, EventArgs e)
         {
-            string dtTime = DateTime.Now.ToString("hh:mm:ss");
+            string dtTime = DateTime.Now.ToString("hh:MM:ss");
             string dtDate = DateTime.Now.ToString("yyyy/mm/dd");
             dbTimeNDate.Text = dtDate + " - " + dtTime;
         }
@@ -97,6 +97,11 @@ namespace SuperMarketMS
             {
                 form.Close();
             }
+        }
+
+        private void bunifuImageButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

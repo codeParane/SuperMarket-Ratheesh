@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tpcStocks = new System.Windows.Forms.TabControl();
             this.tpcStock = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
@@ -40,6 +40,8 @@
             this.cmbStoksItemCat = new System.Windows.Forms.ComboBox();
             this.dgvStocks = new System.Windows.Forms.DataGridView();
             this.tpcManageStock = new System.Windows.Forms.TabPage();
+            this.msQuantity = new System.Windows.Forms.TextBox();
+            this.msEditStock = new System.Windows.Forms.Button();
             this.msDiscountFinal = new System.Windows.Forms.TextBox();
             this.msDiscountPer = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -48,8 +50,8 @@
             this.msInHand = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.msDeleteStock = new System.Windows.Forms.Button();
+            this.msUpdateStock = new System.Windows.Forms.Button();
             this.msClear = new System.Windows.Forms.Button();
             this.msAddToStock = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -61,32 +63,30 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.msExpiryDate = new System.Windows.Forms.DateTimePicker();
-            this.msQuantity = new System.Windows.Forms.NumericUpDown();
             this.msCmbMgStocksItem = new System.Windows.Forms.ComboBox();
             this.msCmbMgStocksItemCat = new System.Windows.Forms.ComboBox();
             this.msDiscount = new System.Windows.Forms.TextBox();
             this.msSellingPrice = new System.Windows.Forms.TextBox();
             this.msCompanyPrice = new System.Windows.Forms.TextBox();
             this.msBarCode = new System.Windows.Forms.TextBox();
-            this.tpcManageProducts = new System.Windows.Forms.TabPage();
-            this.iIsWeight = new System.Windows.Forms.ComboBox();
-            this.iItemCategory = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.isWeight = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.iItemName = new System.Windows.Forms.ComboBox();
-            this.miItemUpdate = new System.Windows.Forms.Button();
-            this.miItemId = new System.Windows.Forms.TextBox();
             this.tpcProducts = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
+            this.tpcManageProducts = new System.Windows.Forms.TabPage();
             this.label17 = new System.Windows.Forms.Label();
+            this.miItemId = new System.Windows.Forms.TextBox();
+            this.miItemUpdate = new System.Windows.Forms.Button();
+            this.iItemName = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.isWeight = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.iItemCategory = new System.Windows.Forms.ComboBox();
+            this.iIsWeight = new System.Windows.Forms.ComboBox();
             this.tpcStocks.SuspendLayout();
             this.tpcStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).BeginInit();
             this.tpcManageStock.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.msQuantity)).BeginInit();
-            this.tpcProducts.SuspendLayout();
+            this.tpcManageProducts.SuspendLayout();
             this.SuspendLayout();
             // 
             // tpcStocks
@@ -101,6 +101,7 @@
             this.tpcStocks.SelectedIndex = 0;
             this.tpcStocks.Size = new System.Drawing.Size(1048, 630);
             this.tpcStocks.TabIndex = 0;
+            this.tpcStocks.TabStop = false;
             // 
             // tpcStock
             // 
@@ -159,7 +160,7 @@
             this.cmbStoksItemCat.Location = new System.Drawing.Point(149, 21);
             this.cmbStoksItemCat.Name = "cmbStoksItemCat";
             this.cmbStoksItemCat.Size = new System.Drawing.Size(246, 29);
-            this.cmbStoksItemCat.TabIndex = 2;
+            this.cmbStoksItemCat.TabIndex = 1;
             this.cmbStoksItemCat.SelectedIndexChanged += new System.EventHandler(this.cmbItemCategory_SelectedIndexChanged);
             // 
             // dgvStocks
@@ -167,40 +168,43 @@
             this.dgvStocks.AllowUserToAddRows = false;
             this.dgvStocks.AllowUserToDeleteRows = false;
             this.dgvStocks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle19;
             this.dgvStocks.Location = new System.Drawing.Point(30, 108);
             this.dgvStocks.Name = "dgvStocks";
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvStocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStocks.Size = new System.Drawing.Size(951, 471);
             this.dgvStocks.TabIndex = 1;
+            this.dgvStocks.TabStop = false;
             // 
             // tpcManageStock
             // 
             this.tpcManageStock.BackColor = System.Drawing.Color.Transparent;
+            this.tpcManageStock.Controls.Add(this.msQuantity);
+            this.tpcManageStock.Controls.Add(this.msEditStock);
             this.tpcManageStock.Controls.Add(this.msDiscountFinal);
             this.tpcManageStock.Controls.Add(this.msDiscountPer);
             this.tpcManageStock.Controls.Add(this.label15);
@@ -209,8 +213,8 @@
             this.tpcManageStock.Controls.Add(this.msInHand);
             this.tpcManageStock.Controls.Add(this.label14);
             this.tpcManageStock.Controls.Add(this.label13);
-            this.tpcManageStock.Controls.Add(this.button4);
-            this.tpcManageStock.Controls.Add(this.button3);
+            this.tpcManageStock.Controls.Add(this.msDeleteStock);
+            this.tpcManageStock.Controls.Add(this.msUpdateStock);
             this.tpcManageStock.Controls.Add(this.msClear);
             this.tpcManageStock.Controls.Add(this.msAddToStock);
             this.tpcManageStock.Controls.Add(this.label5);
@@ -222,7 +226,6 @@
             this.tpcManageStock.Controls.Add(this.label6);
             this.tpcManageStock.Controls.Add(this.label1);
             this.tpcManageStock.Controls.Add(this.msExpiryDate);
-            this.tpcManageStock.Controls.Add(this.msQuantity);
             this.tpcManageStock.Controls.Add(this.msCmbMgStocksItem);
             this.tpcManageStock.Controls.Add(this.msCmbMgStocksItemCat);
             this.tpcManageStock.Controls.Add(this.msDiscount);
@@ -238,6 +241,24 @@
             this.tpcManageStock.Text = "Manage Stocks";
             this.tpcManageStock.Click += new System.EventHandler(this.tpcManageStock_Click);
             this.tpcManageStock.Enter += new System.EventHandler(this.tpcManageStock_Enter_1);
+            // 
+            // msQuantity
+            // 
+            this.msQuantity.Location = new System.Drawing.Point(176, 235);
+            this.msQuantity.Name = "msQuantity";
+            this.msQuantity.Size = new System.Drawing.Size(118, 29);
+            this.msQuantity.TabIndex = 22;
+            this.msQuantity.Text = "0";
+            this.msQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // msEditStock
+            // 
+            this.msEditStock.Location = new System.Drawing.Point(518, 331);
+            this.msEditStock.Name = "msEditStock";
+            this.msEditStock.Size = new System.Drawing.Size(128, 70);
+            this.msEditStock.TabIndex = 21;
+            this.msEditStock.Text = "Edit Stock";
+            this.msEditStock.UseVisualStyleBackColor = true;
             // 
             // msDiscountFinal
             // 
@@ -316,25 +337,25 @@
             this.label13.TabIndex = 13;
             this.label13.Text = "In Hand";
             // 
-            // button4
+            // msDeleteStock
             // 
-            this.button4.Location = new System.Drawing.Point(255, 331);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 70);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Delete Stock";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.msDeleteStock.Location = new System.Drawing.Point(255, 331);
+            this.msDeleteStock.Name = "msDeleteStock";
+            this.msDeleteStock.Size = new System.Drawing.Size(123, 70);
+            this.msDeleteStock.TabIndex = 11;
+            this.msDeleteStock.Text = "Delete Stock";
+            this.msDeleteStock.UseVisualStyleBackColor = true;
+            this.msDeleteStock.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
+            // msUpdateStock
             // 
-            this.button3.Location = new System.Drawing.Point(384, 331);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(128, 70);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Update Stock";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.msUpdateStock.Location = new System.Drawing.Point(384, 331);
+            this.msUpdateStock.Name = "msUpdateStock";
+            this.msUpdateStock.Size = new System.Drawing.Size(128, 70);
+            this.msUpdateStock.TabIndex = 12;
+            this.msUpdateStock.Text = "Update Stock";
+            this.msUpdateStock.UseVisualStyleBackColor = true;
+            this.msUpdateStock.Click += new System.EventHandler(this.button3_Click);
             // 
             // msClear
             // 
@@ -437,22 +458,6 @@
             this.msExpiryDate.Size = new System.Drawing.Size(118, 29);
             this.msExpiryDate.TabIndex = 8;
             // 
-            // msQuantity
-            // 
-            this.msQuantity.DecimalPlaces = 3;
-            this.msQuantity.Location = new System.Drawing.Point(176, 236);
-            this.msQuantity.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.msQuantity.Name = "msQuantity";
-            this.msQuantity.Size = new System.Drawing.Size(118, 29);
-            this.msQuantity.TabIndex = 7;
-            this.msQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.msQuantity.ValueChanged += new System.EventHandler(this.txtStocks_ValueChanged);
-            this.msQuantity.Enter += new System.EventHandler(this.msQuantity_Enter);
-            // 
             // msCmbMgStocksItem
             // 
             this.msCmbMgStocksItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -486,6 +491,7 @@
             this.msDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.msDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             this.msDiscount.Enter += new System.EventHandler(this.msDiscount_Enter);
+            this.msDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.msDiscount_KeyPress);
             this.msDiscount.Leave += new System.EventHandler(this.msDiscount_Leave);
             // 
             // msSellingPrice
@@ -518,8 +524,31 @@
             this.msBarCode.TabIndex = 1;
             this.msBarCode.TextChanged += new System.EventHandler(this.msBarCode_TextChanged);
             // 
+            // tpcProducts
+            // 
+            this.tpcProducts.BackColor = System.Drawing.Color.Transparent;
+            this.tpcProducts.Location = new System.Drawing.Point(4, 41);
+            this.tpcProducts.Name = "tpcProducts";
+            this.tpcProducts.Padding = new System.Windows.Forms.Padding(3);
+            this.tpcProducts.Size = new System.Drawing.Size(1040, 585);
+            this.tpcProducts.TabIndex = 2;
+            this.tpcProducts.Text = "Items";
+            this.tpcProducts.Click += new System.EventHandler(this.tpcProducts_Click);
+            this.tpcProducts.Enter += new System.EventHandler(this.tpcProducts_Enter);
+            // 
             // tpcManageProducts
             // 
+            this.tpcManageProducts.Controls.Add(this.label17);
+            this.tpcManageProducts.Controls.Add(this.miItemId);
+            this.tpcManageProducts.Controls.Add(this.miItemUpdate);
+            this.tpcManageProducts.Controls.Add(this.iItemName);
+            this.tpcManageProducts.Controls.Add(this.button2);
+            this.tpcManageProducts.Controls.Add(this.button1);
+            this.tpcManageProducts.Controls.Add(this.isWeight);
+            this.tpcManageProducts.Controls.Add(this.label10);
+            this.tpcManageProducts.Controls.Add(this.label9);
+            this.tpcManageProducts.Controls.Add(this.iItemCategory);
+            this.tpcManageProducts.Controls.Add(this.iIsWeight);
             this.tpcManageProducts.Location = new System.Drawing.Point(4, 41);
             this.tpcManageProducts.Name = "tpcManageProducts";
             this.tpcManageProducts.Padding = new System.Windows.Forms.Padding(3);
@@ -527,6 +556,112 @@
             this.tpcManageProducts.TabIndex = 3;
             this.tpcManageProducts.Text = "Manage Items";
             this.tpcManageProducts.UseVisualStyleBackColor = true;
+            this.tpcManageProducts.Enter += new System.EventHandler(this.tpcManageProducts_Enter);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(21, 39);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(78, 21);
+            this.label17.TabIndex = 28;
+            this.label17.Text = "Item code";
+            // 
+            // miItemId
+            // 
+            this.miItemId.Enabled = false;
+            this.miItemId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miItemId.Location = new System.Drawing.Point(149, 36);
+            this.miItemId.Name = "miItemId";
+            this.miItemId.Size = new System.Drawing.Size(312, 29);
+            this.miItemId.TabIndex = 18;
+            this.miItemId.TextChanged += new System.EventHandler(this.miItemId_TextChanged);
+            // 
+            // miItemUpdate
+            // 
+            this.miItemUpdate.Enabled = false;
+            this.miItemUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miItemUpdate.Location = new System.Drawing.Point(361, 196);
+            this.miItemUpdate.Name = "miItemUpdate";
+            this.miItemUpdate.Size = new System.Drawing.Size(100, 73);
+            this.miItemUpdate.TabIndex = 24;
+            this.miItemUpdate.Text = "Update";
+            this.miItemUpdate.UseVisualStyleBackColor = true;
+            this.miItemUpdate.Click += new System.EventHandler(this.miItemUpdate_Click);
+            // 
+            // iItemName
+            // 
+            this.iItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.iItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.iItemName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iItemName.FormattingEnabled = true;
+            this.iItemName.Location = new System.Drawing.Point(149, 71);
+            this.iItemName.Name = "iItemName";
+            this.iItemName.Size = new System.Drawing.Size(312, 29);
+            this.iItemName.TabIndex = 19;
+            this.iItemName.SelectedIndexChanged += new System.EventHandler(this.iItemName_SelectedIndexChanged_1);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(255, 196);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 73);
+            this.button2.TabIndex = 23;
+            this.button2.Text = "Clear";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(149, 196);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 73);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Add to Items";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // isWeight
+            // 
+            this.isWeight.AutoSize = true;
+            this.isWeight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isWeight.Location = new System.Drawing.Point(21, 147);
+            this.isWeight.Name = "isWeight";
+            this.isWeight.Size = new System.Drawing.Size(74, 21);
+            this.isWeight.TabIndex = 25;
+            this.isWeight.Text = "is Weight";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(21, 112);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(108, 21);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Item Category";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(21, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 21);
+            this.label9.TabIndex = 27;
+            this.label9.Text = "Item Name";
+            // 
+            // iItemCategory
+            // 
+            this.iItemCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iItemCategory.FormattingEnabled = true;
+            this.iItemCategory.Location = new System.Drawing.Point(149, 109);
+            this.iItemCategory.Name = "iItemCategory";
+            this.iItemCategory.Size = new System.Drawing.Size(312, 29);
+            this.iItemCategory.TabIndex = 20;
             // 
             // iIsWeight
             // 
@@ -537,138 +672,10 @@
             this.iIsWeight.Items.AddRange(new object[] {
             "True",
             "False"});
-            this.iIsWeight.Location = new System.Drawing.Point(148, 118);
+            this.iIsWeight.Location = new System.Drawing.Point(149, 144);
             this.iIsWeight.Name = "iIsWeight";
             this.iIsWeight.Size = new System.Drawing.Size(312, 29);
-            this.iIsWeight.TabIndex = 8;
-            // 
-            // iItemCategory
-            // 
-            this.iItemCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iItemCategory.FormattingEnabled = true;
-            this.iItemCategory.Location = new System.Drawing.Point(148, 83);
-            this.iItemCategory.Name = "iItemCategory";
-            this.iItemCategory.Size = new System.Drawing.Size(312, 29);
-            this.iItemCategory.TabIndex = 7;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(20, 86);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 21);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Item Category";
-            // 
-            // isWeight
-            // 
-            this.isWeight.AutoSize = true;
-            this.isWeight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.isWeight.Location = new System.Drawing.Point(20, 121);
-            this.isWeight.Name = "isWeight";
-            this.isWeight.Size = new System.Drawing.Size(74, 21);
-            this.isWeight.TabIndex = 9;
-            this.isWeight.Text = "is Weight";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(148, 150);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 73);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Add to Items";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(254, 150);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 73);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // iItemName
-            // 
-            this.iItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.iItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.iItemName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iItemName.FormattingEnabled = true;
-            this.iItemName.Location = new System.Drawing.Point(148, 45);
-            this.iItemName.Name = "iItemName";
-            this.iItemName.Size = new System.Drawing.Size(312, 29);
-            this.iItemName.TabIndex = 14;
-            this.iItemName.SelectedIndexChanged += new System.EventHandler(this.iItemName_SelectedIndexChanged);
-            // 
-            // miItemUpdate
-            // 
-            this.miItemUpdate.Enabled = false;
-            this.miItemUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.miItemUpdate.Location = new System.Drawing.Point(360, 150);
-            this.miItemUpdate.Name = "miItemUpdate";
-            this.miItemUpdate.Size = new System.Drawing.Size(100, 73);
-            this.miItemUpdate.TabIndex = 15;
-            this.miItemUpdate.Text = "Update";
-            this.miItemUpdate.UseVisualStyleBackColor = true;
-            this.miItemUpdate.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // miItemId
-            // 
-            this.miItemId.Enabled = false;
-            this.miItemId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.miItemId.Location = new System.Drawing.Point(148, 10);
-            this.miItemId.Name = "miItemId";
-            this.miItemId.Size = new System.Drawing.Size(312, 29);
-            this.miItemId.TabIndex = 16;
-            this.miItemId.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // tpcProducts
-            // 
-            this.tpcProducts.BackColor = System.Drawing.Color.Transparent;
-            this.tpcProducts.Controls.Add(this.label17);
-            this.tpcProducts.Controls.Add(this.miItemId);
-            this.tpcProducts.Controls.Add(this.miItemUpdate);
-            this.tpcProducts.Controls.Add(this.iItemName);
-            this.tpcProducts.Controls.Add(this.button2);
-            this.tpcProducts.Controls.Add(this.button1);
-            this.tpcProducts.Controls.Add(this.isWeight);
-            this.tpcProducts.Controls.Add(this.label10);
-            this.tpcProducts.Controls.Add(this.label9);
-            this.tpcProducts.Controls.Add(this.iItemCategory);
-            this.tpcProducts.Controls.Add(this.iIsWeight);
-            this.tpcProducts.Location = new System.Drawing.Point(4, 41);
-            this.tpcProducts.Name = "tpcProducts";
-            this.tpcProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.tpcProducts.Size = new System.Drawing.Size(1040, 585);
-            this.tpcProducts.TabIndex = 2;
-            this.tpcProducts.Text = "Items";
-            this.tpcProducts.Click += new System.EventHandler(this.tpcProducts_Click);
-            this.tpcProducts.Enter += new System.EventHandler(this.tpcProducts_Enter);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(20, 48);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(87, 21);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Item Name";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(20, 13);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(87, 21);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "Item Name";
+            this.iIsWeight.TabIndex = 21;
             // 
             // StockManagement
             // 
@@ -689,9 +696,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).EndInit();
             this.tpcManageStock.ResumeLayout(false);
             this.tpcManageStock.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.msQuantity)).EndInit();
-            this.tpcProducts.ResumeLayout(false);
-            this.tpcProducts.PerformLayout();
+            this.tpcManageProducts.ResumeLayout(false);
+            this.tpcManageProducts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -701,13 +707,11 @@
         private System.Windows.Forms.TabControl tpcStocks;
         private System.Windows.Forms.TabPage tpcStock;
         private System.Windows.Forms.TabPage tpcManageStock;
-        private System.Windows.Forms.TabPage tpcManageProducts;
         private System.Windows.Forms.DataGridView dgvStocks;
         private System.Windows.Forms.ComboBox cmbStocksItem;
         private System.Windows.Forms.ComboBox cmbStoksItemCat;
         private System.Windows.Forms.ComboBox msCmbMgStocksItemCat;
         private System.Windows.Forms.TextBox msBarCode;
-        private System.Windows.Forms.NumericUpDown msQuantity;
         private System.Windows.Forms.ComboBox msCmbMgStocksItem;
         private System.Windows.Forms.DateTimePicker msExpiryDate;
         private System.Windows.Forms.Label label5;
@@ -725,10 +729,10 @@
         private System.Windows.Forms.TextBox msDiscount;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button msDeleteStock;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button msUpdateStock;
         private System.Windows.Forms.TextBox msStockTotal;
         private System.Windows.Forms.TextBox msInHand;
         private System.Windows.Forms.TextBox msDiscountFinal;
@@ -736,6 +740,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TabPage tpcProducts;
+        private System.Windows.Forms.Button msEditStock;
+        private System.Windows.Forms.TabPage tpcManageProducts;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox miItemId;
         private System.Windows.Forms.Button miItemUpdate;
@@ -747,5 +753,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox iItemCategory;
         private System.Windows.Forms.ComboBox iIsWeight;
+        private System.Windows.Forms.TextBox msQuantity;
     }
 }

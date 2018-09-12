@@ -184,6 +184,7 @@
             this.Name = "PayOption";
             this.Text = "PayOption";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.PayOption_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
