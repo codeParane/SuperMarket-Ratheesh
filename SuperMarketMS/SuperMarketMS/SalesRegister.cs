@@ -88,9 +88,8 @@ namespace SuperMarketMS
                         txtDisAmount.Text = "0";
                         txtNetAmount.Text = selPrice.ToString();
                     }
-                    //string n = @"D:\Resources\ItemImage\" + id + ".jpg";
-                    //pboItemImage.Image = File.Exists(Image.FromFile(n)) ?
-                    //    Image.FromFile(@"D:\Resources\ItemImage\" + id + ".jpg") : Image.FromFile(@"D:\Resources\ItemImage\default.jpg");
+                    bool n = File.Exists(@"D:\Resources\ItemImage\" + id + ".jpg")? true : false;
+                    pboItemImage.Image = n ? Image.FromFile(@"D:\Resources\ItemImage\" + id + ".jpg") : Image.FromFile(@"D:\Resources\ItemImage\default.png");
                 }
             }
         }

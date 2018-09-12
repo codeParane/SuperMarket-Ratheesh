@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tpcStocks = new System.Windows.Forms.TabControl();
             this.tpcStock = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
@@ -68,16 +68,19 @@
             this.msSellingPrice = new System.Windows.Forms.TextBox();
             this.msCompanyPrice = new System.Windows.Forms.TextBox();
             this.msBarCode = new System.Windows.Forms.TextBox();
-            this.tpcProducts = new System.Windows.Forms.TabPage();
-            this.iItemName = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.isWeight = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.iItemCategory = new System.Windows.Forms.ComboBox();
-            this.iIsWeight = new System.Windows.Forms.ComboBox();
             this.tpcManageProducts = new System.Windows.Forms.TabPage();
+            this.iIsWeight = new System.Windows.Forms.ComboBox();
+            this.iItemCategory = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.isWeight = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.iItemName = new System.Windows.Forms.ComboBox();
+            this.miItemUpdate = new System.Windows.Forms.Button();
+            this.miItemId = new System.Windows.Forms.TextBox();
+            this.tpcProducts = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.tpcStocks.SuspendLayout();
             this.tpcStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).BeginInit();
@@ -164,32 +167,32 @@
             this.dgvStocks.AllowUserToAddRows = false;
             this.dgvStocks.AllowUserToDeleteRows = false;
             this.dgvStocks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvStocks.Location = new System.Drawing.Point(30, 108);
             this.dgvStocks.Name = "dgvStocks";
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvStocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStocks.Size = new System.Drawing.Size(951, 471);
@@ -515,9 +518,121 @@
             this.msBarCode.TabIndex = 1;
             this.msBarCode.TextChanged += new System.EventHandler(this.msBarCode_TextChanged);
             // 
+            // tpcManageProducts
+            // 
+            this.tpcManageProducts.Location = new System.Drawing.Point(4, 41);
+            this.tpcManageProducts.Name = "tpcManageProducts";
+            this.tpcManageProducts.Padding = new System.Windows.Forms.Padding(3);
+            this.tpcManageProducts.Size = new System.Drawing.Size(1040, 585);
+            this.tpcManageProducts.TabIndex = 3;
+            this.tpcManageProducts.Text = "Manage Items";
+            this.tpcManageProducts.UseVisualStyleBackColor = true;
+            // 
+            // iIsWeight
+            // 
+            this.iIsWeight.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.iIsWeight.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.iIsWeight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iIsWeight.FormattingEnabled = true;
+            this.iIsWeight.Items.AddRange(new object[] {
+            "True",
+            "False"});
+            this.iIsWeight.Location = new System.Drawing.Point(148, 118);
+            this.iIsWeight.Name = "iIsWeight";
+            this.iIsWeight.Size = new System.Drawing.Size(312, 29);
+            this.iIsWeight.TabIndex = 8;
+            // 
+            // iItemCategory
+            // 
+            this.iItemCategory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iItemCategory.FormattingEnabled = true;
+            this.iItemCategory.Location = new System.Drawing.Point(148, 83);
+            this.iItemCategory.Name = "iItemCategory";
+            this.iItemCategory.Size = new System.Drawing.Size(312, 29);
+            this.iItemCategory.TabIndex = 7;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(20, 86);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(108, 21);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Item Category";
+            // 
+            // isWeight
+            // 
+            this.isWeight.AutoSize = true;
+            this.isWeight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isWeight.Location = new System.Drawing.Point(20, 121);
+            this.isWeight.Name = "isWeight";
+            this.isWeight.Size = new System.Drawing.Size(74, 21);
+            this.isWeight.TabIndex = 9;
+            this.isWeight.Text = "is Weight";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(148, 150);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 73);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Add to Items";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(254, 150);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 73);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Clear";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // iItemName
+            // 
+            this.iItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.iItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.iItemName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iItemName.FormattingEnabled = true;
+            this.iItemName.Location = new System.Drawing.Point(148, 45);
+            this.iItemName.Name = "iItemName";
+            this.iItemName.Size = new System.Drawing.Size(312, 29);
+            this.iItemName.TabIndex = 14;
+            this.iItemName.SelectedIndexChanged += new System.EventHandler(this.iItemName_SelectedIndexChanged);
+            // 
+            // miItemUpdate
+            // 
+            this.miItemUpdate.Enabled = false;
+            this.miItemUpdate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miItemUpdate.Location = new System.Drawing.Point(360, 150);
+            this.miItemUpdate.Name = "miItemUpdate";
+            this.miItemUpdate.Size = new System.Drawing.Size(100, 73);
+            this.miItemUpdate.TabIndex = 15;
+            this.miItemUpdate.Text = "Update";
+            this.miItemUpdate.UseVisualStyleBackColor = true;
+            this.miItemUpdate.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // miItemId
+            // 
+            this.miItemId.Enabled = false;
+            this.miItemId.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.miItemId.Location = new System.Drawing.Point(148, 10);
+            this.miItemId.Name = "miItemId";
+            this.miItemId.Size = new System.Drawing.Size(312, 29);
+            this.miItemId.TabIndex = 16;
+            this.miItemId.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // tpcProducts
             // 
             this.tpcProducts.BackColor = System.Drawing.Color.Transparent;
+            this.tpcProducts.Controls.Add(this.label17);
+            this.tpcProducts.Controls.Add(this.miItemId);
+            this.tpcProducts.Controls.Add(this.miItemUpdate);
             this.tpcProducts.Controls.Add(this.iItemName);
             this.tpcProducts.Controls.Add(this.button2);
             this.tpcProducts.Controls.Add(this.button1);
@@ -535,99 +650,25 @@
             this.tpcProducts.Click += new System.EventHandler(this.tpcProducts_Click);
             this.tpcProducts.Enter += new System.EventHandler(this.tpcProducts_Enter);
             // 
-            // iItemName
-            // 
-            this.iItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.iItemName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.iItemName.FormattingEnabled = true;
-            this.iItemName.Location = new System.Drawing.Point(191, 9);
-            this.iItemName.Name = "iItemName";
-            this.iItemName.Size = new System.Drawing.Size(121, 40);
-            this.iItemName.TabIndex = 14;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(297, 184);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 29);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(191, 184);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Add to Items";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // isWeight
-            // 
-            this.isWeight.AutoSize = true;
-            this.isWeight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.isWeight.Location = new System.Drawing.Point(20, 88);
-            this.isWeight.Name = "isWeight";
-            this.isWeight.Size = new System.Drawing.Size(74, 21);
-            this.isWeight.TabIndex = 9;
-            this.isWeight.Text = "is Weight";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(20, 52);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 21);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Item Category";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(20, 21);
+            this.label9.Location = new System.Drawing.Point(20, 48);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(87, 21);
             this.label9.TabIndex = 11;
             this.label9.Text = "Item Name";
             // 
-            // iItemCategory
+            // label17
             // 
-            this.iItemCategory.FormattingEnabled = true;
-            this.iItemCategory.Location = new System.Drawing.Point(191, 55);
-            this.iItemCategory.Name = "iItemCategory";
-            this.iItemCategory.Size = new System.Drawing.Size(180, 40);
-            this.iItemCategory.TabIndex = 7;
-            // 
-            // iIsWeight
-            // 
-            this.iIsWeight.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.iIsWeight.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.iIsWeight.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iIsWeight.FormattingEnabled = true;
-            this.iIsWeight.Items.AddRange(new object[] {
-            "True",
-            "False"});
-            this.iIsWeight.Location = new System.Drawing.Point(191, 101);
-            this.iIsWeight.Name = "iIsWeight";
-            this.iIsWeight.Size = new System.Drawing.Size(180, 29);
-            this.iIsWeight.TabIndex = 8;
-            // 
-            // tpcManageProducts
-            // 
-            this.tpcManageProducts.Location = new System.Drawing.Point(4, 41);
-            this.tpcManageProducts.Name = "tpcManageProducts";
-            this.tpcManageProducts.Padding = new System.Windows.Forms.Padding(3);
-            this.tpcManageProducts.Size = new System.Drawing.Size(1040, 585);
-            this.tpcManageProducts.TabIndex = 3;
-            this.tpcManageProducts.Text = "Manage Items";
-            this.tpcManageProducts.UseVisualStyleBackColor = true;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(20, 13);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(87, 21);
+            this.label17.TabIndex = 17;
+            this.label17.Text = "Item Name";
             // 
             // StockManagement
             // 
@@ -660,7 +701,6 @@
         private System.Windows.Forms.TabControl tpcStocks;
         private System.Windows.Forms.TabPage tpcStock;
         private System.Windows.Forms.TabPage tpcManageStock;
-        private System.Windows.Forms.TabPage tpcProducts;
         private System.Windows.Forms.TabPage tpcManageProducts;
         private System.Windows.Forms.DataGridView dgvStocks;
         private System.Windows.Forms.ComboBox cmbStocksItem;
@@ -683,13 +723,6 @@
         private System.Windows.Forms.TextBox msCompanyPrice;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox msDiscount;
-        private System.Windows.Forms.Label isWeight;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox iItemCategory;
-        private System.Windows.Forms.ComboBox iIsWeight;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button4;
@@ -702,6 +735,17 @@
         private System.Windows.Forms.TextBox msDiscountPer;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TabPage tpcProducts;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox miItemId;
+        private System.Windows.Forms.Button miItemUpdate;
         private System.Windows.Forms.ComboBox iItemName;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label isWeight;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox iItemCategory;
+        private System.Windows.Forms.ComboBox iIsWeight;
     }
 }

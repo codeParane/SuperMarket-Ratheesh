@@ -214,8 +214,8 @@ namespace SuperMarketMS
                 item = msCmbMgStocksItem.Text;
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text),2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text),2);
-                discountP = decimal.Parse(msDiscountFinal.Text);
-                quantity = decimal.Parse(msStockTotal.Text);
+                discountP = Math.Round(decimal.Parse(msDiscountFinal.Text),2);
+                quantity = Math.Round(decimal.Parse(msStockTotal.Text),3);
                 expiryDate = msExpiryDate.Text;
 
                 //MessageBox.Show("Not Completed Details!!!!");
@@ -485,8 +485,8 @@ namespace SuperMarketMS
                 item = msCmbMgStocksItem.Text;
                 companyPrice = Math.Round(decimal.Parse(msCompanyPrice.Text), 2);
                 sellingPrice = Math.Round(decimal.Parse(msSellingPrice.Text), 2);
-                discountP = int.Parse(msDiscount.Text);
-                quantity = decimal.Parse(msDiscountFinal.Text);
+                discountP = Math.Round(decimal.Parse(msDiscount.Text),2);
+                quantity = Math.Round(decimal.Parse(msStockTotal.Text),3);
                 expiryDate = msExpiryDate.Text;
 
                 //MessageBox.Show("Not Completed Details!!!!");
@@ -539,6 +539,24 @@ namespace SuperMarketMS
         private void msQuantity_Enter(object sender, EventArgs e)
         {
             //msQuantity.Clear();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            miItemUpdate.Enabled = false;
+            if (miItemId.Text != null || miItemId.Text != ""){
+                miItemUpdate.Enabled = true;
+            }
+        }
+
+        private void iItemName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
