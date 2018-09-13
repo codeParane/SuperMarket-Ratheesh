@@ -359,11 +359,7 @@ namespace SuperMarketMS
 
         private void msBarCode_TextChanged(object sender, EventArgs e)
         {
-            if(true == true)
-            {
-
-            }
-
+          
             string itemCat = "";
             string item = "";
             string compPrice = "";
@@ -490,7 +486,7 @@ namespace SuperMarketMS
 
         private void msInHand_TextChanged(object sender, EventArgs e)
         {
-            msStockTotal.Text = (decimal.Parse(msQuantity.Text) + decimal.Parse(msInHand.Text)).ToString();
+            //msStockTotal.Text = (decimal.Parse(msQuantity.Text) + decimal.Parse(msInHand.Text)).ToString();
         }
 
         private void msDiscount_Enter(object sender, EventArgs e)
@@ -633,6 +629,11 @@ namespace SuperMarketMS
                 MessageBox.Show("Item Updated!!!");
                 button2_Click_1("", e);
             }
+        }
+
+        private void msQuantity_TextChanged(object sender, EventArgs e)
+        {
+            msStockTotal.Text = (decimal.Parse(msQuantity.Text) + decimal.Parse(msInHand.Text)).ToString();
         }
     }
 }
