@@ -75,9 +75,13 @@ namespace SuperMarketMS
             {
                 while (dr_getProduct.Read())
                 {
-                    txtGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
-                    txtDis.Text = dr_getProduct["dis"].ToString();
-                    txtFinal.Text = dr_getProduct["net"].ToString();
+                    if(dr_getProduct["dis"] != null)
+                    {
+                        txtGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
+                        txtDis.Text = dr_getProduct["dis"].ToString();
+                        txtFinal.Text = dr_getProduct["net"].ToString();
+
+                    }
 
                 }
             }
@@ -113,8 +117,12 @@ namespace SuperMarketMS
                         string barCode = dr_getProducta["itemcode"].ToString();
                         string itemName = dr_getProducta["itemname"].ToString();
                         decimal qty = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+                        decimal rate = Math.Round(decimal.Parse(dr_getProducta["rate"].ToString()), 2);
+                        decimal dis = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+                        decimal net = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
 
                         printString = printString + barCode + "\t" + itemName + "\t" + qty + "\n";
+                        printString = printString + "\t" + + rate + "\t" + dis + "\t" + net + "\n";
                         dbconn.CloseConnection();
                         dbconn.OpenConnection();
                         string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";
@@ -136,7 +144,8 @@ namespace SuperMarketMS
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
-            string qAddToBill1 = "INSERT INTO sales(billDate, amount, revenue)  VALUES ('"+ DateTime.Now +"',"+ txtFinal.Text +",0);";
+            string qAddToBill1 = "INSERT INTO sales(billDate, amount, revenue)  VALUES ('"+ DateTime.Now.ToString("yyyy/MM/dd hh:mm") 
+                +"',"+ txtFinal.Text +",0);delete from currentbill;";
             MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
             int queryAffected1 = cAddToBill1.ExecuteNonQuery();
             if (queryAffected1 > 0)
