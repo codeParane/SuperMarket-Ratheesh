@@ -112,7 +112,7 @@ namespace SuperMarketMS
                     string itemName = dr_getProduct["itemname"].ToString();
                     decimal qty = Math.Round(decimal.Parse(dr_getProduct["qty"].ToString()), 3);
 
-                    printString = printString + barCode + "\t" + itemName + "\t" + qty;
+                    printString = printString + barCode + "\t" + itemName + "\t" + qty + "\n";
                     dbconn.CloseConnection();
                     dbconn.OpenConnection();
                     string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";
