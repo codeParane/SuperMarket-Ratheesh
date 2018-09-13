@@ -31,21 +31,23 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.poTotalBill = new System.Windows.Forms.TextBox();
+            this.txtGross = new System.Windows.Forms.TextBox();
+            this.txtDis = new System.Windows.Forms.TextBox();
+            this.txtFinal = new System.Windows.Forms.TextBox();
             this.poTotalDiscount = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.poTotalDisPer = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.poTotalDisCash = new System.Windows.Forms.TextBox();
+            this.dgvFinalStocks = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFinalStocks)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(62, 312);
+            this.button1.Location = new System.Drawing.Point(418, 170);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 101);
             this.button1.TabIndex = 0;
@@ -56,7 +58,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(218, 312);
+            this.button2.Location = new System.Drawing.Point(272, 303);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 101);
             this.button2.TabIndex = 0;
@@ -66,41 +68,41 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(384, 312);
+            this.button3.Location = new System.Drawing.Point(418, 277);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(140, 101);
             this.button3.TabIndex = 0;
             this.button3.Text = "Card";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtGross
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(384, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(201, 29);
-            this.textBox1.TabIndex = 1;
+            this.txtGross.Enabled = false;
+            this.txtGross.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGross.Location = new System.Drawing.Point(384, 36);
+            this.txtGross.Name = "txtGross";
+            this.txtGross.Size = new System.Drawing.Size(201, 29);
+            this.txtGross.TabIndex = 1;
             // 
-            // textBox2
+            // txtDis
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(384, 71);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(201, 29);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.txtDis.Enabled = false;
+            this.txtDis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDis.Location = new System.Drawing.Point(384, 71);
+            this.txtDis.Name = "txtDis";
+            this.txtDis.Size = new System.Drawing.Size(201, 29);
+            this.txtDis.TabIndex = 1;
+            this.txtDis.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // poTotalBill
+            // txtFinal
             // 
-            this.poTotalBill.Enabled = false;
-            this.poTotalBill.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.poTotalBill.ForeColor = System.Drawing.Color.Maroon;
-            this.poTotalBill.Location = new System.Drawing.Point(384, 106);
-            this.poTotalBill.Name = "poTotalBill";
-            this.poTotalBill.Size = new System.Drawing.Size(201, 39);
-            this.poTotalBill.TabIndex = 1;
+            this.txtFinal.Enabled = false;
+            this.txtFinal.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFinal.ForeColor = System.Drawing.Color.Maroon;
+            this.txtFinal.Location = new System.Drawing.Point(384, 106);
+            this.txtFinal.Name = "txtFinal";
+            this.txtFinal.Size = new System.Drawing.Size(201, 39);
+            this.txtFinal.TabIndex = 1;
             // 
             // poTotalDiscount
             // 
@@ -163,21 +165,30 @@
             this.poTotalDisCash.Text = "0";
             this.poTotalDisCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // dgvFinalStocks
+            // 
+            this.dgvFinalStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFinalStocks.Location = new System.Drawing.Point(64, 90);
+            this.dgvFinalStocks.Name = "dgvFinalStocks";
+            this.dgvFinalStocks.Size = new System.Drawing.Size(193, 55);
+            this.dgvFinalStocks.TabIndex = 8;
+            // 
             // PayOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 425);
             this.ControlBox = false;
+            this.Controls.Add(this.dgvFinalStocks);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.poTotalDisCash);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.poTotalDisPer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.poTotalDiscount);
-            this.Controls.Add(this.poTotalBill);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtFinal);
+            this.Controls.Add(this.txtDis);
+            this.Controls.Add(this.txtGross);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -187,6 +198,7 @@
             this.Text = "PayOption";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PayOption_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFinalStocks)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,14 +209,15 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox poTotalBill;
+        private System.Windows.Forms.TextBox txtGross;
+        private System.Windows.Forms.TextBox txtDis;
+        private System.Windows.Forms.TextBox txtFinal;
         private System.Windows.Forms.TextBox poTotalDiscount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox poTotalDisPer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox poTotalDisCash;
+        private System.Windows.Forms.DataGridView dgvFinalStocks;
     }
 }

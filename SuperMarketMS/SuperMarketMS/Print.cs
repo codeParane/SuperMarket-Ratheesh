@@ -23,7 +23,7 @@ namespace SuperMarketMS
             string s = "";
             string[] a = { "Apple", "Ornage", "Test" };
             int lineChar = 31;
-            for (int i=0; i < 10; i++)
+            for (int i=0; i < 2; i++)
             {
                 int spacePrint = lineChar - a[i].Length;
                 
