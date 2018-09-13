@@ -182,9 +182,13 @@ namespace SuperMarketMS
             {
                 while (dr_getProduct.Read())
                 {
-                    lblGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
-                    lblDiscount.Text = dr_getProduct["dis"].ToString();
-                    lblTotal.Text = dr_getProduct["net"].ToString();
+                    if(dr_getProduct["dis"] != null)
+                    {
+                        lblGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
+                        lblDiscount.Text = dr_getProduct["dis"].ToString();
+                        lblTotal.Text = dr_getProduct["net"].ToString();
+                    }
+                    
                     //totalDis = decimal.Parse(dr_getProduct["dis"]);
                     //totalNet = decimal.Parse(dr_getProduct["net"]);
                 }

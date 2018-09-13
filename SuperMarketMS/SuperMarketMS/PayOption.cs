@@ -98,32 +98,41 @@ namespace SuperMarketMS
 
             string printString = "";
             //reduce Stock
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qr_getProduct = "select * from currentbill;";
-            MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
-            MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
-
-            if (dr_getProduct.HasRows == true)
+            try
             {
-                while (dr_getProduct.Read())
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                string qr_getProducta = "select * from currentbill;";
+                MySqlCommand cm_getProducta = new MySqlCommand(qr_getProducta, dbconn.connection);
+                MySqlDataReader dr_getProducta = cm_getProducta.ExecuteReader();
+
+                if (dr_getProducta.HasRows == true)
                 {
-                    string barCode = dr_getProduct["itemcode"].ToString();
-                    string itemName = dr_getProduct["itemname"].ToString();
-                    decimal qty = Math.Round(decimal.Parse(dr_getProduct["qty"].ToString()), 3);
-
-                    printString = printString + barCode + "\t" + itemName + "\t" + qty + "\n";
-                    dbconn.CloseConnection();
-                    dbconn.OpenConnection();
-                    string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";
-                    MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
-                    int queryAffected = cAddToBill.ExecuteNonQuery();
-                    if (queryAffected > 0)
+                    while (dr_getProducta.Read())
                     {
+                        string barCode = dr_getProducta["itemcode"].ToString();
+                        string itemName = dr_getProducta["itemname"].ToString();
+                        decimal qty = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
 
+                        printString = printString + barCode + "\t" + itemName + "\t" + qty + "\n";
+                        dbconn.CloseConnection();
+                        dbconn.OpenConnection();
+                        string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";
+                        MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+                        int queryAffected = cAddToBill.ExecuteNonQuery();
+                        if (queryAffected > 0)
+                        {
+
+                        }
                     }
                 }
+
+            } catch(MySqlException e)
+            {
+                Console.Write(e);
             }
+            
+            
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
