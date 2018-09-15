@@ -20,7 +20,7 @@ namespace SuperMarketMS
         {
             pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\default.png");
             //
-            string qCurrentBill = "select * from currentbill;";
+            string qCurrentBill = "select itemname, qty, rate, disa, net, cmprice from currentbill;";
             MySqlDataAdapter aCurrentBill = new MySqlDataAdapter(qCurrentBill, dbconn.connection);
             DataSet ds = new DataSet();
             aCurrentBill.Fill(ds, "CurrentBill");
@@ -32,12 +32,13 @@ namespace SuperMarketMS
     
         }
         public string isWeight = "";
+        decimal cmpPrice = 0;
         private void txtItemCode_TextChanged(object sender, EventArgs e)
         {
             string barCode = "";
             string id = "";
             string name = "";
-            decimal cmpPrice = 0;
+            cmpPrice = 0;
             decimal selPrice = 0;
             decimal disAmount = 0;
             txtItemName.Clear(); txtSelling.Clear();  txtDisAmount.Clear(); txtNetAmount.Clear();
@@ -140,7 +141,8 @@ namespace SuperMarketMS
                     decimal qty = Math.Round(decimal.Parse(txtQty.Text), 3);
                     decimal rate = Math.Round(decimal.Parse(txtSelling.Text), 2);
                     //string discount = txtDisPercentage.Text;
-                    decimal disAmount = decimal.Parse(txtDisAmount.Text);
+                    
+                    decimal disAmount = Math.Round(decimal.Parse(txtDisAmount.Text),2);
                     decimal netAmount = Math.Round(decimal.Parse(txtNetAmount.Text), 2);
                     //if(isWeight == "true")
                     //{
@@ -153,7 +155,7 @@ namespace SuperMarketMS
 
 
                     string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
-                        "," + rate + ", " + disAmount + ", " + netTotal + ");";
+                        "," + rate + ", " + disAmount + ", " + netTotal + ", "+ cmpPrice +");";
                     dbconn.CloseConnection();
                     dbconn.OpenConnection();
                     MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
@@ -163,7 +165,7 @@ namespace SuperMarketMS
             }
             dbconn.CloseConnection();
             dbconn.OpenConnection();
-            string qCurrentBill = "select * from currentbill;";
+            string qCurrentBill = "select itemname, qty, rate, disa, net, cmprice from currentbill;";
             MySqlDataAdapter aCurrentBill = new MySqlDataAdapter(qCurrentBill, dbconn.connection);
             DataSet ds = new DataSet();
             aCurrentBill.Fill(ds, "CurrentBill");
@@ -202,16 +204,21 @@ namespace SuperMarketMS
 
         private void SalesRegister_Leave(object sender, EventArgs e)
         {
-            MessageBox.Show("sss");
+            //MessageBox.Show("sss");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form fm = this;
-            fm.Hide();
-            MainForm mf = new MainForm();
-            mf.Show();
-            fm.Close();
+            dbconn.OpenConnection();
+            dbconn.CloseConnection();
+            string qAddToBill = "delete from currentbill;";
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+            int queryAffected = cAddToBill.ExecuteNonQuery();
+
+            this.Close();
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -221,6 +228,27 @@ namespace SuperMarketMS
             PayOption po = new PayOption();
             po.MdiParent = ps;
             po.Show();
+        }
+
+        private void dgvCurrentBill_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            MessageBox.Show("");
+        }
+
+        private void dgvCurrentBill_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            //MessageBox.Show(dgvCurrentBill.SelectedRows());
+            //MessageBox.Show(dgvCurrentBill.SelectedRows[1].Cells["itemname"].ToString());
+        }
+
+        private void dgvCurrentBill_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+           // MessageBox.Show(dgvCurrentBill.SelectedRows[-1].Cells["itemname"].ToString());
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

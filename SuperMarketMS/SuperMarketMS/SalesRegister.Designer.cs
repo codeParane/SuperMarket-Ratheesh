@@ -203,12 +203,16 @@
             // 
             // dgvCurrentBill
             // 
+            this.dgvCurrentBill.AllowUserToAddRows = false;
             this.dgvCurrentBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCurrentBill.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvCurrentBill.Location = new System.Drawing.Point(12, 155);
             this.dgvCurrentBill.Name = "dgvCurrentBill";
             this.dgvCurrentBill.Size = new System.Drawing.Size(639, 327);
             this.dgvCurrentBill.TabIndex = 1;
+            this.dgvCurrentBill.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentBill_RowEnter);
+            this.dgvCurrentBill.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvCurrentBill_RowsRemoved);
+            this.dgvCurrentBill.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgvCurrentBill_UserDeletedRow);
             // 
             // button1
             // 
@@ -242,8 +246,9 @@
             this.button3.Size = new System.Drawing.Size(115, 56);
             this.button3.TabIndex = 2;
             this.button3.TabStop = false;
-            this.button3.Text = "button1";
+            this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // groupBox2
             // 
@@ -300,8 +305,10 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvCurrentBill);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SalesRegister";
             this.Text = " ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SalesRegister_Load);
             this.Leave += new System.EventHandler(this.SalesRegister_Leave);
             this.groupBox1.ResumeLayout(false);

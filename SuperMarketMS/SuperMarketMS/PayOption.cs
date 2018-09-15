@@ -22,23 +22,28 @@ namespace SuperMarketMS
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (poTotalDiscount.Text != "")
+            if (poBillDiscount.Text != "")
             {
-                Decimal disCash = 0;
+                decimal disCash = 0;
                 decimal disPer = 0;
-                string disValue = poTotalDiscount.Text;
+                decimal gross = 0;
+                decimal itemSaving = 0;
+                decimal gross_itemSaving = 0;
+                decimal totalBillAmount = 0;
+                
+                string disValue = poBillDiscount.Text;
                 if (disValue.Substring(disValue.Length - 1) == "%" && disValue != "0")
                 {
                     if (decimal.Parse(disValue.Remove(disValue.Length - 1)) >= 100 || decimal.Parse(disValue.Remove(disValue.Length - 1)) < 0)
                     {
                         MessageBox.Show("Wrong Discount Percentage!!!");
-                        poTotalDiscount.Text = "0"; poTotalDisPer.Text = "0"; poTotalDisCash.Text = "0";
+                        poBillDiscount.Text = "0"; poBillDisPer.Text = "0"; poBillDisCash.Text = "0";
                     }
                     else
                     {
-                        disCash = Math.Round(decimal.Parse(txtFinal.Text) * decimal.Parse(disValue.Remove(disValue.Length - 1)) / 100, 2);
-                        poTotalDisCash.Text = disCash.ToString();
-                        poTotalDisPer.Text = poTotalDiscount.Text;
+                        disCash = Math.Round(gross_itemSaving * decimal.Parse(disValue.Remove(disValue.Length - 1)) / 100, 2);
+                        poBillDisCash.Text = disCash.ToString();
+                        poBillDisPer.Text = poBillDiscount.Text;
                     }
                 }
                 else if (disValue.Substring(disValue.Length - 1) != "%" && disValue != "0")
@@ -46,28 +51,30 @@ namespace SuperMarketMS
                     if (decimal.Parse(disValue) < 0)
                     {
                         MessageBox.Show("Wrong Discount Amount!!!");
-                        poTotalDiscount.Text = "0";poTotalDisPer.Text = "0"; poTotalDisCash.Text = "0";
+                        poBillDiscount.Text = "0";poBillDisPer.Text = "0"; poBillDisCash.Text = "0";
                     }
                     else
                     {
-                        disPer = Math.Round(decimal.Parse(disValue) / decimal.Parse(txtFinal.Text) * 100, 2);
-                        poTotalDisCash.Text = poTotalDiscount.Text;
-                        poTotalDisPer.Text = disPer.ToString();
+                        disPer = Math.Round((decimal.Parse(disValue) / gross_itemSaving) * 100, 2);
+                        poBillDisCash.Text = poBillDiscount.Text;
+                        poBillDisPer.Text = disPer.ToString();
                     }
                 }
             }
             else
             {
-                poTotalDisPer.Text = "0%";
-                poTotalDisCash.Text = "0";
+                poBillDisPer.Text = "0%";
+                poBillDisCash.Text = "0";
             }
         }
+        decimal revenue = 0;
 
         private void PayOption_Load(object sender, EventArgs e)
         {
+            revenue = 0;
             dbconn.CloseConnection();
             dbconn.OpenConnection();
-            string qr_getProduct = "SELECT sum(disa) AS dis, sum(net) AS net FROM sm.currentbill;";
+            string qr_getProduct = "SELECT sum(disa) AS dis, sum(net)  AS net, sum(cmprice) AS rev FROM sm.currentbill;";
             MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
             MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
 
@@ -77,9 +84,10 @@ namespace SuperMarketMS
                 {
                     if(dr_getProduct["dis"] != null)
                     {
-                        txtGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
-                        txtDis.Text = dr_getProduct["dis"].ToString();
-                        txtFinal.Text = dr_getProduct["net"].ToString();
+                        poGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
+                        poItemSavings.Text = dr_getProduct["dis"].ToString();
+                        poTotalBill.Text = dr_getProduct["net"].ToString();
+                        revenue = Math.Round(decimal.Parse(dr_getProduct["rev"].ToString()), 2);
 
                     }
 
@@ -94,6 +102,7 @@ namespace SuperMarketMS
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             finalSale();
         }
 
@@ -101,51 +110,63 @@ namespace SuperMarketMS
         {
 
             string printString = "";
-            //reduce Stock
-            try
+            PrintDocument p = new PrintDocument();
+
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qGetStocks = "select itemname, qty, rate, disa, net, cmprice from currentbill; ";
+            MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+            DataSet ds = new DataSet();
+            aGetStocks.Fill(ds, "Stocks");
+            dgvFinalStocks.DataSource = ds.Tables["Stocks"];
+
+
+
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qr_getProducta = "select itemname, qty, rate, disa, net, cmprice from currentbill;";
+            MySqlCommand cm_getProducta = new MySqlCommand(qr_getProducta, dbconn.connection);
+            MySqlDataReader dr_getProducta = cm_getProducta.ExecuteReader();
+
+            if (dr_getProducta.HasRows == true)
             {
+                while (dr_getProducta.Read())
+                {
+                    string barCode = dr_getProducta["itemcode"].ToString();
+                    string itemName = dr_getProducta["itemname"].ToString();
+                    decimal qty = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+                    decimal rate = Math.Round(decimal.Parse(dr_getProducta["rate"].ToString()), 2);
+                    decimal dis = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+                    decimal net = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+               }
+            }
+
+
+            foreach (DataGridViewRow row in dgvFinalStocks.Rows)
+            {
+                string barCode = row.Cells["itemcode"].Value.ToString();
+                string qty = row.Cells["qty"].Value.ToString();
                 dbconn.CloseConnection();
                 dbconn.OpenConnection();
-                string qr_getProducta = "select * from currentbill;";
-                MySqlCommand cm_getProducta = new MySqlCommand(qr_getProducta, dbconn.connection);
-                MySqlDataReader dr_getProducta = cm_getProducta.ExecuteReader();
-
-                if (dr_getProducta.HasRows == true)
+                string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";
+                MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+                int queryAffected = cAddToBill.ExecuteNonQuery();
+                if (queryAffected > 0)
                 {
-                    while (dr_getProducta.Read())
-                    {
-                        string barCode = dr_getProducta["itemcode"].ToString();
-                        string itemName = dr_getProducta["itemname"].ToString();
-                        decimal qty = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
-                        decimal rate = Math.Round(decimal.Parse(dr_getProducta["rate"].ToString()), 2);
-                        decimal dis = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
-                        decimal net = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
 
-                        printString = printString + barCode + "\t" + itemName + "\t" + qty + "\n";
-                        printString = printString + "\t" + + rate + "\t" + dis + "\t" + net + "\n";
-                        dbconn.CloseConnection();
-                        dbconn.OpenConnection();
-                        string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";
-                        MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
-                        int queryAffected = cAddToBill.ExecuteNonQuery();
-                        if (queryAffected > 0)
-                        {
-
-                        }
-                    }
                 }
 
-            } catch(MySqlException e)
-            {
-                Console.Write(e);
             }
-            
-            
+
+
+
+
+
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             string qAddToBill1 = "INSERT INTO sales(billDate, amount, revenue)  VALUES ('"+ DateTime.Now.ToString("yyyy/MM/dd hh:mm") 
-                +"',"+ txtFinal.Text +",0);delete from currentbill;";
+                +"',"+ poTotalBill.Text +","+ revenue +");delete from currentbill;";
             MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
             int queryAffected1 = cAddToBill1.ExecuteNonQuery();
             if (queryAffected1 > 0)
@@ -153,7 +174,7 @@ namespace SuperMarketMS
 
             }
 
-            PrintDocument p = new PrintDocument();
+            
             p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
             {
                 e1.Graphics.DrawString(printString, new Font("Seqoe ui", 10), new SolidBrush(Color.Black),
@@ -161,8 +182,7 @@ namespace SuperMarketMS
                     p.DefaultPageSettings.PrintableArea.Height));
             };
             p.Print();
-            //add To sales
-            
+          
 
         }
     }

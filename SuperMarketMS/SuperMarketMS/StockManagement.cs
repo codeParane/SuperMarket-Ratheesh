@@ -155,48 +155,54 @@ namespace SuperMarketMS
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            if (msDiscount.Text != "" || msDiscount.Text != null || msDiscount.Text != "0" || msDiscount.Text != "0%")
+            msDiscountPer.Text = "0";
+            msDiscountFinal.Text = "0";
+            if(msSellingPrice.Text != "" && msSellingPrice.Text != "0" && msSellingPrice.Text != "0.00")
             {
-                Decimal disCash = 0;
-                decimal disPer = 0;
-                string disValue = msDiscount.Text;
-                if (disValue.Length > 1)
+                if (msDiscount.Text != "" || msDiscount.Text != null || msDiscount.Text != "0" || msDiscount.Text != "0%")
                 {
-                    if (disValue.Substring(disValue.Length - 1) == "%")
+                    Decimal disCash = 0;
+                    decimal disPer = 0;
+                    string disValue = msDiscount.Text;
+                    if (disValue.Length >= 1)
                     {
-                        if (decimal.Parse(disValue.Remove(disValue.Length - 1)) >= 100 || decimal.Parse(disValue.Remove(disValue.Length - 1)) < 0)
+                        if (disValue.Substring(disValue.Length - 1) == "%")
                         {
-                            MessageBox.Show("Wrong Discount Percentage!!!");
-                            msDiscount.Text = "0";
+                            if (decimal.Parse(disValue.Remove(disValue.Length - 1)) >= 100 || decimal.Parse(disValue.Remove(disValue.Length - 1)) < 0)
+                            {
+                                MessageBox.Show("Wrong Discount Percentage!!!");
+                                msDiscount.Text = "0";
+                            }
+                            else
+                            {
+                                disCash = Math.Round(decimal.Parse(msSellingPrice.Text) * decimal.Parse(disValue.Remove(disValue.Length - 1)) / 100, 2);
+                                msDiscountFinal.Text = disCash.ToString();
+                                msDiscountPer.Text = msDiscount.Text;
+                            }
                         }
-                        else
+                        else if (disValue.Substring(disValue.Length - 1) != "%" && disValue != "0")
                         {
-                            disCash = Math.Round(decimal.Parse(msSellingPrice.Text) * decimal.Parse(disValue.Remove(disValue.Length - 1)) / 100, 2);
-                            msDiscountFinal.Text = disCash.ToString();
-                            msDiscountPer.Text = msDiscount.Text;
-                        }
-                    }
-                    else if (disValue.Substring(disValue.Length - 1) != "%" && disValue != "0")
-                    {
-                        if (decimal.Parse(disValue) < 0)
-                        {
-                            MessageBox.Show("Wrong Discount Amount!!!");
-                            msDiscount.Text = "0";
-                        }
-                        else
-                        {
-                            disPer = Math.Round(decimal.Parse(disValue) / decimal.Parse(msSellingPrice.Text) * 100, 2);
-                            msDiscountFinal.Text = msDiscount.Text;
-                            msDiscountPer.Text = disPer.ToString();
+                            if (decimal.Parse(disValue) < 0)
+                            {
+                                MessageBox.Show("Wrong Discount Amount!!!");
+                                msDiscount.Text = "0";
+                            }
+                            else
+                            {
+                                disPer = Math.Round(decimal.Parse(disValue) / decimal.Parse(msSellingPrice.Text) * 100, 2);
+                                msDiscountFinal.Text = msDiscount.Text;
+                                msDiscountPer.Text = disPer.ToString();
+                            }
                         }
                     }
                 }
+                else
+                {
+                    msDiscountFinal.Text = "0";
+                    msDiscountPer.Text = "0%";
+                }
             }
-            else
-            {
-                msDiscountFinal.Text = "0";
-                msDiscountPer.Text = "0%";
-            }
+            
         }
 
         private void tpcProducts_Click(object sender, EventArgs e)
@@ -367,6 +373,7 @@ namespace SuperMarketMS
             string discount = "";
             string qty = "";
             string expDate = "";
+            msDiscount.Text = "0";
 
             MySqlCommand cmd = new MySqlCommand("select i.name, i.category, s.companyPrice, s.sellingPrice, s.discount, s.qty," + 
                 "s.expiry from items as i join stocks as s on i.id = s.itemid WHERE s.barcode = '"+ msBarCode.Text +"';", dbconn.connection);
@@ -633,7 +640,45 @@ namespace SuperMarketMS
 
         private void msQuantity_TextChanged(object sender, EventArgs e)
         {
-            msStockTotal.Text = (decimal.Parse(msQuantity.Text) + decimal.Parse(msInHand.Text)).ToString();
+            if(msInHand.Text != "0" && msInHand.Text != "")
+            {
+                msStockTotal.Text = (decimal.Parse(msQuantity.Text) + decimal.Parse(msInHand.Text)).ToString();
+            }
+            else
+            {
+                msStockTotal.Text = msQuantity.Text;
+            }
+            //
+        }
+
+        private void msQuantity_Enter_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void msEditStock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
