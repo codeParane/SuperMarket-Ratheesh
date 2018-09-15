@@ -680,5 +680,10 @@ namespace SuperMarketMS
         {
             this.Close();
         }
+
+        private void tpcManageProducts_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

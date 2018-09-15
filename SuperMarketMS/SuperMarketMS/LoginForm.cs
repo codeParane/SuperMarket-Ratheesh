@@ -24,10 +24,30 @@ namespace SuperMarketMS
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             bool isExecute = true;
-            if(txtUserName.Text.Equals("") || txtPassword.Text.Equals(""))
+            if (txtUserName.Text.Equals("") || txtPassword.Text.Equals(""))
             {
                 MessageBox.Show("User name or password can't be Empty !!!");
                 isExecute = false;
@@ -49,9 +69,9 @@ namespace SuperMarketMS
                 {
                     //MessageBox.Show("Success!!");
                     loggedUser = txtUserName.Text;
-                    
+
                     this.Hide();
-                    MainForm mainForm = new MainForm();
+                    DashBoard mainForm = new DashBoard();
                     mainForm.Show();
 
                 }
@@ -67,19 +87,14 @@ namespace SuperMarketMS
             }
         }
 
-        private void txtPassword_TextChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
+        
         }
     }
 }
