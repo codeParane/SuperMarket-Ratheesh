@@ -165,14 +165,34 @@ namespace SuperMarketMS
             string printString = "";
             PrintDocument p = new PrintDocument();
 
+
+            //headerPrint
+            string header = 
+                "\t    --SHATTHVEES SUPERMART--" +
+                "\n\t  Main Street, Kommathurai." +
+                "\n\t       TP-0652050369" +
+                "\n-------------------------------------------" +
+                "\n#    Item\t Qty\t Grs\t Dis\t Net\n";
+            //"\n-------------------------------------------\n";
+            p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
+            {
+                e1.Graphics.DrawString(header, new Font("Segoe ui", 10), new SolidBrush(Color.Black),
+                    new RectangleF(0, 0, p.DefaultPageSettings.PrintableArea.Width,
+                    p.DefaultPageSettings.PrintableArea.Height));
+            };
+            //----------------------------------
+
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             string qr_getProducta = "select itemcode, itemname, qty, rate, disa, net, cmprice from currentbill;";
             MySqlCommand cm_getProducta = new MySqlCommand(qr_getProducta, dbconn.connection);
             MySqlDataReader dr_getProducta = cm_getProducta.ExecuteReader();
 
+            //ItemList
+            string itemList = "";
             if (dr_getProducta.HasRows == true)
             {
+                int num = 1;
                 while (dr_getProducta.Read())
                 {
                     string barCode = dr_getProducta["itemcode"].ToString();
@@ -181,6 +201,10 @@ namespace SuperMarketMS
                     decimal rate = Math.Round(decimal.Parse(dr_getProducta["rate"].ToString()), 2);
                     decimal dis = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
                     decimal net = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+
+                    itemList += "\n   " + num +" - "+ itemName;
+                    itemList += " \n\t" + qty + "\t" + rate + "\t" + dis + "\t" + net;
+                    num++;
                 }
             }
 
@@ -200,7 +224,7 @@ namespace SuperMarketMS
                 }
 
             }
-
+            string payTypeBill = "";
             if(payType == "cash")
             {
                 decimal revenue = Math.Round(decimal.Parse(poTotalBill.Text) - comp, 2);
@@ -210,6 +234,10 @@ namespace SuperMarketMS
                     + "'," + poTotalBill.Text + "," + revenue + ", 'cash');delete from currentbill;";
                 MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
+
+                payTypeBill =
+                    "\n Paid By Cash   Cash       : " + poCash.Text +
+                    "\n                Balance    : " + poBalance.Text;
             }
             else if (payType == "card")
             {
@@ -220,6 +248,11 @@ namespace SuperMarketMS
                     + "'," + poTotalBill.Text + "," + revenue + ", 'card');delete from currentbill;";
                 MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
+
+                payTypeBill =
+                    "\n Paid By Card   Bank       : " + cmbCardType.Text +
+                    "\n                Deducted   : " + poTotalBill.Text;
+
             }
             else if (payType == "loan")
             {
@@ -230,17 +263,56 @@ namespace SuperMarketMS
                     + "'," + poTotalBill.Text + "," + revenue + ", 'loan');delete from currentbill;";
                 MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
+
+                payTypeBill =
+                    "\n Paid By Loan   Account    : " + cmbLoanAccount.Text +
+                    "\n                Person     : " + cmbLoanName.Text +
+                    "\n                Credit     : " + poTotalBill.Text;
+
             }
 
+            //SELECT fields FROM table ORDER BY id DESC LIMIT 1;
+            int lastBillid = 0;
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qr_getProducta2 = "select id from currentbill order by desa limit 1;";
+            MySqlCommand cm_getProducta2 = new MySqlCommand(qr_getProducta2, dbconn.connection);
+            MySqlDataReader dr_getProducta2 = cm_getProducta2.ExecuteReader();
+ 
+            if (dr_getProducta2.HasRows == true)
+            {
+                while (dr_getProducta2.Read())
+                {
+                    lastBillid = int.Parse(dr_getProducta2["id"].ToString());
+                }
+            }
+
+
+
+
+            string totalBill =
+                "\n\t\tGross \t: " + poGross.Text +
+                "\n\t\tDiscount : " + (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text)) +
+                "\n\t\t\tTotal \t: " + poTotalBill.Text;
+
+            string footer =
+                "\n   Bill # : "+ lastBillid +"   Casier : "+ LoginForm.loggedUser.ToUpper() +
+                "\n   Date   : "+ DateTime.Now.ToString("yyyy/MM/dd") +" | Time : "+ DateTime.Now.ToString("hh:mm:ss") +"." +
+                "\n\t\t <<<<  Thank You, Come Again.. >>>>";
+
+
+            printString += payTypeBill;
+            printString += itemList;
+            printString += totalBill;
+            printString += footer;
 
             p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
             {
                 e1.Graphics.DrawString(printString, new Font("Seqoe ui", 10), new SolidBrush(Color.Black),
-                    new RectangleF(0, 0, p.DefaultPageSettings.PrintableArea.Width,
+                    new RectangleF(0, 70, p.DefaultPageSettings.PrintableArea.Width,
                     p.DefaultPageSettings.PrintableArea.Height));
             };
             p.Print();
-
             this.Close();
 
 
@@ -254,6 +326,17 @@ namespace SuperMarketMS
         private void button2_Click(object sender, EventArgs e)
         {
             finalSale("loan");
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qAddToBill = "UPDATE customers SET loan= loan + " + poTotalBill.Text +
+                "WHERE nic = '"+ cmbLoanAccount.Text +"';insert into loan(nic, method, amount, dateNtime) values('"+
+                cmbLoanAccount.Text +"', 'Credited', "+  poTotalBill.Text +", '"+ DateTime.Now +"');";
+            MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+            int queryAffected = cAddToBill.ExecuteNonQuery();
+            if (queryAffected > 0)
+            {
+                MessageBox.Show("Loan Updated!!!");
+            }
         }
 
         private void cmbLoanName_SelectedIndexChanged(object sender, EventArgs e)

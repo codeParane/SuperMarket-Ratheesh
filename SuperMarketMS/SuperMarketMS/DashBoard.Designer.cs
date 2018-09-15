@@ -340,11 +340,11 @@
             // dbLoggedUser
             // 
             this.dbLoggedUser.AutoSize = true;
-            this.dbLoggedUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dbLoggedUser.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dbLoggedUser.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dbLoggedUser.Location = new System.Drawing.Point(3, 0);
+            this.dbLoggedUser.Location = new System.Drawing.Point(3, 14);
             this.dbLoggedUser.Name = "dbLoggedUser";
-            this.dbLoggedUser.Size = new System.Drawing.Size(199, 29);
+            this.dbLoggedUser.Size = new System.Drawing.Size(199, 15);
             this.dbLoggedUser.TabIndex = 1;
             this.dbLoggedUser.Text = "Log in user.";
             // 
