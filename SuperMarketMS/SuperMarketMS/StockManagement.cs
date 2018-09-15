@@ -541,10 +541,11 @@ namespace SuperMarketMS
         private void iItemName_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             miItemId.Text = "";
+            iItemCategory.Text = "-SELECT-";
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             string itemId = "";
-            MySqlCommand cmd = new MySqlCommand("SELECT id FROM items WHERE name='" + iItemName.Text + "'", dbconn.connection);
+            MySqlCommand cmd = new MySqlCommand("SELECT id, category FROM items WHERE name='" + iItemName.Text + "'", dbconn.connection);
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -553,9 +554,11 @@ namespace SuperMarketMS
                 while (reader.Read())
                 {
                     itemId = reader.GetString(0);
+                    iItemCategory.Text = reader.GetString(1);
                 }
             }
             miItemId.Text = itemId.ToString();
+            
 
         }
 
