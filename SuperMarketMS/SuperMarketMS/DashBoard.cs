@@ -117,5 +117,10 @@ namespace SuperMarketMS
             LoginForm mainForm = new LoginForm();
             mainForm.Show();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
