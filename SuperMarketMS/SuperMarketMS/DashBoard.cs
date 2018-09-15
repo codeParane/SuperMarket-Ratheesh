@@ -28,6 +28,15 @@ namespace SuperMarketMS
             dbTimer.Enabled = true;
             dbTimer.Interval = 1000;
             dbTimer.Tick += new EventHandler(this.tmrDateTime_Tick);
+
+            foreach (Form form in dbFrmContainer.Controls.OfType<Form>().ToArray())
+            {
+                form.Close();
+            }
+            viewDashboard l = new viewDashboard();
+            l.TopLevel = false;
+            dbFrmContainer.Controls.Add(l);
+            l.Show();
         }
         private void tmrDateTime_Tick(object sender, EventArgs e)
         {
@@ -42,7 +51,10 @@ namespace SuperMarketMS
             {
                 form.Close();
             }
-
+            viewDashboard l = new viewDashboard();
+            l.TopLevel = false;
+            dbFrmContainer.Controls.Add(l);
+            l.Show();
 
         }
 
@@ -102,6 +114,8 @@ namespace SuperMarketMS
         private void bunifuImageButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+            LoginForm mainForm = new LoginForm();
+            mainForm.Show();
         }
     }
 }

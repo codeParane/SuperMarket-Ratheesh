@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tpcStocks = new System.Windows.Forms.TabControl();
             this.tpcStock = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
@@ -82,15 +82,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.iItemCategory = new System.Windows.Forms.ComboBox();
             this.iIsWeight = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.tpcStocks.SuspendLayout();
             this.tpcStock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).BeginInit();
             this.tpcManageStock.SuspendLayout();
-            this.tpcProducts.SuspendLayout();
             this.tpcManageProducts.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +106,6 @@
             // tpcStock
             // 
             this.tpcStock.BackColor = System.Drawing.Color.Transparent;
-            this.tpcStock.Controls.Add(this.button4);
             this.tpcStock.Controls.Add(this.label12);
             this.tpcStock.Controls.Add(this.label11);
             this.tpcStock.Controls.Add(this.cmbStocksItem);
@@ -174,32 +168,32 @@
             this.dgvStocks.AllowUserToAddRows = false;
             this.dgvStocks.AllowUserToDeleteRows = false;
             this.dgvStocks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(237)))), ((int)(((byte)(244)))));
+            dataGridViewCellStyle41.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle41;
             this.dgvStocks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStocks.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
+            dataGridViewCellStyle42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle42.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle42.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle42.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle42.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStocks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle42;
             this.dgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle43.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(232)))));
+            dataGridViewCellStyle43.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle43.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle43.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle43.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle43.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStocks.DefaultCellStyle = dataGridViewCellStyle43;
             this.dgvStocks.Location = new System.Drawing.Point(30, 108);
             this.dgvStocks.Name = "dgvStocks";
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle44.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStocks.RowsDefaultCellStyle = dataGridViewCellStyle44;
             this.dgvStocks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStocks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStocks.Size = new System.Drawing.Size(951, 471);
@@ -209,7 +203,6 @@
             // tpcManageStock
             // 
             this.tpcManageStock.BackColor = System.Drawing.Color.Transparent;
-            this.tpcManageStock.Controls.Add(this.button3);
             this.tpcManageStock.Controls.Add(this.msQuantity);
             this.tpcManageStock.Controls.Add(this.msEditStock);
             this.tpcManageStock.Controls.Add(this.msDiscountFinal);
@@ -537,7 +530,6 @@
             // tpcProducts
             // 
             this.tpcProducts.BackColor = System.Drawing.Color.Transparent;
-            this.tpcProducts.Controls.Add(this.button5);
             this.tpcProducts.Location = new System.Drawing.Point(4, 41);
             this.tpcProducts.Name = "tpcProducts";
             this.tpcProducts.Padding = new System.Windows.Forms.Padding(3);
@@ -549,7 +541,6 @@
             // 
             // tpcManageProducts
             // 
-            this.tpcManageProducts.Controls.Add(this.button6);
             this.tpcManageProducts.Controls.Add(this.label17);
             this.tpcManageProducts.Controls.Add(this.miItemId);
             this.tpcManageProducts.Controls.Add(this.miItemUpdate);
@@ -690,47 +681,6 @@
             this.iIsWeight.Size = new System.Drawing.Size(312, 29);
             this.iIsWeight.TabIndex = 21;
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(652, 331);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 70);
-            this.button3.TabIndex = 21;
-            this.button3.Text = "Close";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(427, 18);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(90, 70);
-            this.button4.TabIndex = 22;
-            this.button4.Text = "Close";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(475, 257);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(90, 70);
-            this.button5.TabIndex = 22;
-            this.button5.Text = "Close";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(467, 196);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 73);
-            this.button6.TabIndex = 29;
-            this.button6.Text = "Close";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // StockManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -750,7 +700,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStocks)).EndInit();
             this.tpcManageStock.ResumeLayout(false);
             this.tpcManageStock.PerformLayout();
-            this.tpcProducts.ResumeLayout(false);
             this.tpcManageProducts.ResumeLayout(false);
             this.tpcManageProducts.PerformLayout();
             this.ResumeLayout(false);
@@ -809,9 +758,5 @@
         private System.Windows.Forms.ComboBox iItemCategory;
         private System.Windows.Forms.ComboBox iIsWeight;
         private System.Windows.Forms.TextBox msQuantity;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
     }
 }

@@ -204,11 +204,6 @@ namespace SuperMarketMS
 
         private void SalesRegister_Leave(object sender, EventArgs e)
         {
-            //MessageBox.Show("sss");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
             dbconn.OpenConnection();
             dbconn.CloseConnection();
             string qAddToBill = "delete from currentbill;";
@@ -216,6 +211,10 @@ namespace SuperMarketMS
             dbconn.OpenConnection();
             MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
             int queryAffected = cAddToBill.ExecuteNonQuery();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
 
             this.Close();
           
