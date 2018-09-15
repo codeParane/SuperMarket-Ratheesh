@@ -209,10 +209,10 @@ namespace SuperMarketMS
             }
 
 
-            foreach (DataGridViewRow row in dgvFinalStocks.Rows)
+            for(int i =0; i < dgvFinalStocks.RowCount; i++)
             {
-                string barCode = row.Cells["itemcode"].Value.ToString();
-                string qty = row.Cells["qty"].Value.ToString();
+                string barCode = dgvFinalStocks.Rows[0].Cells[0].Value.ToString();
+                string qty = dgvFinalStocks.Rows[0].Cells[2].Value.ToString();
                 dbconn.CloseConnection();
                 dbconn.OpenConnection();
                 string qAddToBill = "update stocks set qty=qty-" + qty + " where barcode='" + barCode + "';";

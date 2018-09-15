@@ -165,9 +165,9 @@
             // 
             this.dgvFinalStocks.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvFinalStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFinalStocks.Location = new System.Drawing.Point(44, 30);
+            this.dgvFinalStocks.Location = new System.Drawing.Point(12, 295);
             this.dgvFinalStocks.Name = "dgvFinalStocks";
-            this.dgvFinalStocks.Size = new System.Drawing.Size(321, 10);
+            this.dgvFinalStocks.Size = new System.Drawing.Size(358, 391);
             this.dgvFinalStocks.TabIndex = 8;
             // 
             // label4
