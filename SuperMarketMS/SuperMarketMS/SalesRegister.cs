@@ -231,7 +231,7 @@ namespace SuperMarketMS
 
         private void dgvCurrentBill_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
-            MessageBox.Show("");
+            //MessageBox.Show("");
         }
 
         private void dgvCurrentBill_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
