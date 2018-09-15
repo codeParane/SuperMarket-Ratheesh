@@ -58,8 +58,9 @@ namespace SuperMarketMS
             {
                 dbconn.CloseConnection();
                 dbconn.OpenConnection();
-                string qr_getProduct = "SELECT i.id AS id, i.name AS name,i.weight as isWeight, s.companyprice AS cmpprice,s.sellingprice as selprice, s.discount AS discount, s.qty FROM" +
-                    " stocks AS s JOIN items AS i ON s.itemid = i.id WHERE s.barcode = " + barCode + ";";
+                string qr_getProduct = "SELECT i.id AS id, i.name AS name,i.weight as isWeight, "+
+                    "s.companyprice AS cmpprice,s.sellingprice as selprice, s.discount AS discount, s.qty FROM" +
+                    " stocks AS s JOIN items AS i ON s.itemid = i.id WHERE s.barcode = '" + barCode + "';";
                 MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
                     MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
 
@@ -161,56 +162,52 @@ namespace SuperMarketMS
                     MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
                     int queryAffected = cAddToBill.ExecuteNonQuery();
                 }
-                    
-            }
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qCurrentBill = "select itemname, qty, rate, disa, net, cmprice from currentbill;";
-            MySqlDataAdapter aCurrentBill = new MySqlDataAdapter(qCurrentBill, dbconn.connection);
-            DataSet ds = new DataSet();
-            aCurrentBill.Fill(ds, "CurrentBill");
-            dgvCurrentBill.DataSource = ds.Tables["CurrentBill"];
-            txtItemCode.Clear();
-            txtQty.Clear();
-            txtItemCode.Focus();
 
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qr_getProduct = "SELECT sum(disa) AS dis, sum(net) AS net FROM sm.currentbill;";
-            MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
-            MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
-            
-            if (dr_getProduct.HasRows == true)
-            {
-                while (dr_getProduct.Read())
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                string qCurrentBill = "select itemname, qty, rate, disa, net, cmprice from currentbill;";
+                MySqlDataAdapter aCurrentBill = new MySqlDataAdapter(qCurrentBill, dbconn.connection);
+                DataSet ds = new DataSet();
+                aCurrentBill.Fill(ds, "CurrentBill");
+                dgvCurrentBill.DataSource = ds.Tables["CurrentBill"];
+                txtItemCode.Clear();
+                txtQty.Clear();
+                txtItemCode.Focus();
+
+                dbconn.CloseConnection();
+                dbconn.OpenConnection();
+                string qr_getProduct = "SELECT sum(disa) AS dis, sum(net) AS net FROM sm.currentbill;";
+                MySqlCommand cm_getProduct = new MySqlCommand(qr_getProduct, dbconn.connection);
+                MySqlDataReader dr_getProduct = cm_getProduct.ExecuteReader();
+
+                if (dr_getProduct.HasRows == true)
                 {
-                    if(dr_getProduct["dis"] != null)
+                    while (dr_getProduct.Read())
                     {
-                        lblGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
-                        lblDiscount.Text = dr_getProduct["dis"].ToString();
-                        lblTotal.Text = dr_getProduct["net"].ToString();
+                        if (dr_getProduct["dis"] != null)
+                        {
+                            lblGross.Text = (decimal.Parse(dr_getProduct["dis"].ToString()) + decimal.Parse(dr_getProduct["net"].ToString())).ToString();
+                            lblDiscount.Text = dr_getProduct["dis"].ToString();
+                            lblTotal.Text = dr_getProduct["net"].ToString();
+                        }
+
+                        //totalDis = decimal.Parse(dr_getProduct["dis"]);
+                        //totalNet = decimal.Parse(dr_getProduct["net"]);
                     }
-                    
-                    //totalDis = decimal.Parse(dr_getProduct["dis"]);
-                    //totalNet = decimal.Parse(dr_getProduct["net"]);
                 }
             }
-
-
-
-
-
+            
             }
 
         private void SalesRegister_Leave(object sender, EventArgs e)
         {
-            dbconn.OpenConnection();
-            dbconn.CloseConnection();
-            string qAddToBill = "delete from currentbill;";
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
-            int queryAffected = cAddToBill.ExecuteNonQuery();
+            //dbconn.OpenConnection();
+            //dbconn.CloseConnection();
+            //string qAddToBill = "delete from currentbill;";
+            //dbconn.CloseConnection();
+            //dbconn.OpenConnection();
+            //MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+            //int queryAffected = cAddToBill.ExecuteNonQuery();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -222,8 +219,17 @@ namespace SuperMarketMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PayOption po = new PayOption();   
-            po.Show();
+            if(dgvCurrentBill.RowCount > 0)
+            {
+
+                PayOption po = new PayOption();
+                po.Show();
+            }
+            else
+            {
+                MessageBox.Show("There is no items to pay!");
+            }
+           
         }
 
         private void dgvCurrentBill_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
@@ -236,7 +242,9 @@ namespace SuperMarketMS
             if(dgvCurrentBill.Rows.Count > 0)
             {
                 int rowIndex = dgvCurrentBill.CurrentRow.Index;
+                MessageBox.Show(rowIndex.ToString());
             }
+            
             //MessageBox.Show(dgvCurrentBill.SelectedRows());
             //MessageBox.Show(rowIndex);
             //MessageBox.Show(dgvCurrentBill.[e.Row].Cells["itemname"].ToString());
@@ -250,6 +258,28 @@ namespace SuperMarketMS
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SalesRegister_Enter(object sender, EventArgs e)
+        {
+            dbconn.OpenConnection();
+            dbconn.CloseConnection();
+            string qAddToBill = "delete from currentbill;";
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+            int queryAffected = cAddToBill.ExecuteNonQuery();
+        }
+
+        private void txtQty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.');
+
+        }
+
+        private void txtItemCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

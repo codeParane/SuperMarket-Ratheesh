@@ -55,7 +55,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.loanAmount = new System.Windows.Forms.TextBox();
+            this.loanSettle = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.loanUpdateCre = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinalStocks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +77,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(474, 416);
+            this.button2.Location = new System.Drawing.Point(474, 436);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(201, 59);
             this.button2.TabIndex = 0;
@@ -249,6 +253,7 @@
             this.poTotalBill.TabIndex = 15;
             this.poTotalBill.Text = "0";
             this.poTotalBill.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.poTotalBill.TextChanged += new System.EventHandler(this.poTotalBill_TextChanged);
             // 
             // label8
             // 
@@ -271,6 +276,7 @@
             this.poCash.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.poCash.TextChanged += new System.EventHandler(this.poCash_TextChanged);
             this.poCash.Enter += new System.EventHandler(this.poCash_Enter);
+            this.poCash.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.poCash_KeyPress);
             // 
             // cmbCardType
             // 
@@ -371,24 +377,71 @@
             this.label12.TabIndex = 25;
             this.label12.Text = "Credit";
             // 
-            // textBox1
+            // loanAmount
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(474, 327);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(201, 29);
-            this.textBox1.TabIndex = 26;
-            this.textBox1.Text = "0";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.loanAmount.Enabled = false;
+            this.loanAmount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loanAmount.Location = new System.Drawing.Point(474, 327);
+            this.loanAmount.Name = "loanAmount";
+            this.loanAmount.Size = new System.Drawing.Size(201, 29);
+            this.loanAmount.TabIndex = 26;
+            this.loanAmount.Text = "0";
+            this.loanAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // loanSettle
+            // 
+            this.loanSettle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loanSettle.Location = new System.Drawing.Point(535, 362);
+            this.loanSettle.Name = "loanSettle";
+            this.loanSettle.Size = new System.Drawing.Size(140, 29);
+            this.loanSettle.TabIndex = 28;
+            this.loanSettle.Text = "0";
+            this.loanSettle.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.loanSettle.TextChanged += new System.EventHandler(this.loanSettle_TextChanged);
+            this.loanSettle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.loanSettle_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(375, 365);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(49, 21);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Settle";
+            // 
+            // loanUpdateCre
+            // 
+            this.loanUpdateCre.Enabled = false;
+            this.loanUpdateCre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loanUpdateCre.Location = new System.Drawing.Point(491, 397);
+            this.loanUpdateCre.Name = "loanUpdateCre";
+            this.loanUpdateCre.Size = new System.Drawing.Size(184, 29);
+            this.loanUpdateCre.TabIndex = 30;
+            this.loanUpdateCre.Text = "0";
+            this.loanUpdateCre.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(375, 400);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(106, 21);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Update Credit";
             // 
             // PayOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 487);
+            this.ClientSize = new System.Drawing.Size(699, 507);
             this.ControlBox = false;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.loanUpdateCre);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.loanSettle);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.loanAmount);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -420,7 +473,6 @@
             this.MinimizeBox = false;
             this.Name = "PayOption";
             this.Text = "PayOption";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PayOption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinalStocks)).EndInit();
             this.ResumeLayout(false);
@@ -457,6 +509,10 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox loanAmount;
+        private System.Windows.Forms.TextBox loanSettle;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox loanUpdateCre;
+        private System.Windows.Forms.Label label14;
     }
 }

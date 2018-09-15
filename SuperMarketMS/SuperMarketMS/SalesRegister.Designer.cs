@@ -184,11 +184,12 @@
             // txtQty
             // 
             this.txtQty.Location = new System.Drawing.Point(434, 50);
-            this.txtQty.MaxLength = 3;
+            this.txtQty.MaxLength = 7;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(57, 25);
             this.txtQty.TabIndex = 2;
             this.txtQty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.txtQty.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtQty_KeyPress);
             this.txtQty.Leave += new System.EventHandler(this.txtQty_Leave);
             // 
             // txtItemCode
@@ -199,6 +200,7 @@
             this.txtItemCode.TabIndex = 1;
             this.txtItemCode.TextChanged += new System.EventHandler(this.txtItemCode_TextChanged);
             this.txtItemCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtItemCode_KeyDown);
+            this.txtItemCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtItemCode_KeyPress);
             this.txtItemCode.Leave += new System.EventHandler(this.txtItemCode_Leave);
             // 
             // dgvCurrentBill
@@ -297,6 +299,7 @@
             this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.SalesRegister_Load);
+            this.Enter += new System.EventHandler(this.SalesRegister_Enter);
             this.Leave += new System.EventHandler(this.SalesRegister_Leave);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

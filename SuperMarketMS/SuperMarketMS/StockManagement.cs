@@ -540,6 +540,7 @@ namespace SuperMarketMS
 
         private void iItemName_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            miItemId.Text = "";
             dbconn.CloseConnection();
             dbconn.OpenConnection();
             string itemId = "";
@@ -684,6 +685,21 @@ namespace SuperMarketMS
         private void tpcManageProducts_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void msCompanyPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.');
+        }
+
+        private void msSellingPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.');
+        }
+
+        private void msQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.');
         }
     }
 }
