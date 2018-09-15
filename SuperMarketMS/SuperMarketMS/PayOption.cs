@@ -71,6 +71,14 @@ namespace SuperMarketMS
 
         private void PayOption_Load(object sender, EventArgs e)
         {
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            string qGetStocks = "select itemcode, itemname, qty, rate, disa, net, cmprice from currentbill; ";
+            MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
+            DataSet ds = new DataSet();
+            aGetStocks.Fill(ds, "Stocks");
+            dgvFinalStocks.DataSource = ds.Tables["sto"];
+
             revenue = 0;
             dbconn.CloseConnection();
             dbconn.OpenConnection();
@@ -112,19 +120,12 @@ namespace SuperMarketMS
             string printString = "";
             PrintDocument p = new PrintDocument();
 
-            dbconn.CloseConnection();
-            dbconn.OpenConnection();
-            string qGetStocks = "select itemname, qty, rate, disa, net, cmprice from currentbill; ";
-            MySqlDataAdapter aGetStocks = new MySqlDataAdapter(qGetStocks, dbconn.connection);
-            DataSet ds = new DataSet();
-            aGetStocks.Fill(ds, "Stocks");
-            dgvFinalStocks.DataSource = ds.Tables["Stocks"];
-
+   
 
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
-            string qr_getProducta = "select itemname, qty, rate, disa, net, cmprice from currentbill;";
+            string qr_getProducta = "select itemcode, itemname, qty, rate, disa, net, cmprice from currentbill;";
             MySqlCommand cm_getProducta = new MySqlCommand(qr_getProducta, dbconn.connection);
             MySqlDataReader dr_getProducta = cm_getProducta.ExecuteReader();
 
@@ -144,7 +145,7 @@ namespace SuperMarketMS
 
             foreach (DataGridViewRow row in dgvFinalStocks.Rows)
             {
-                string barCode = row.Cells["itemcode"].Value.ToString();
+                    string barCode = row.Cells["itemcode"].Value.ToString();
                 string qty = row.Cells["qty"].Value.ToString();
                 dbconn.CloseConnection();
                 dbconn.OpenConnection();
@@ -157,11 +158,6 @@ namespace SuperMarketMS
                 }
 
             }
-
-
-
-
-
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
@@ -182,7 +178,8 @@ namespace SuperMarketMS
                     p.DefaultPageSettings.PrintableArea.Height));
             };
             p.Print();
-          
+
+            this.Close();
 
         }
     }

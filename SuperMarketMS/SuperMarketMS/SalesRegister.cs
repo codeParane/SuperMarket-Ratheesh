@@ -155,7 +155,7 @@ namespace SuperMarketMS
 
 
                     string qAddToBill = "INSERT INTO currentbill values('" + itemcode + "','" + itemName + "'," + qty +
-                        "," + rate + ", " + disAmount + ", " + netTotal + ", "+ cmpPrice +");";
+                        "," + rate + ", " + disAmount + ", " + netTotal + ", "+ cmpPrice*qty +");";
                     dbconn.CloseConnection();
                     dbconn.OpenConnection();
                     MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
@@ -236,8 +236,13 @@ namespace SuperMarketMS
 
         private void dgvCurrentBill_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
+            if(dgvCurrentBill.Rows.Count > 0)
+            {
+                int rowIndex = dgvCurrentBill.CurrentRow.Index;
+            }
             //MessageBox.Show(dgvCurrentBill.SelectedRows());
-            //MessageBox.Show(dgvCurrentBill.SelectedRows[1].Cells["itemname"].ToString());
+            //MessageBox.Show(rowIndex);
+            //MessageBox.Show(dgvCurrentBill.[e.Row].Cells["itemname"].ToString());
         }
 
         private void dgvCurrentBill_RowEnter(object sender, DataGridViewCellEventArgs e)
