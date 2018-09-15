@@ -185,6 +185,7 @@
             // txtQty
             // 
             this.txtQty.Location = new System.Drawing.Point(434, 50);
+            this.txtQty.MaxLength = 3;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(57, 25);
             this.txtQty.TabIndex = 2;
