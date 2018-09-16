@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CashDeals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CashDeals.Designer.cs">
+      <DependentUpon>CashDeals.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConstVariables.cs" />
     <Compile Include="DashBoard.cs">
       <SubType>Form</SubType>
@@ -87,18 +93,6 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PayByCash.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PayByCash.Designer.cs">
-      <DependentUpon>PayByCash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PayForSales.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PayForSales.Designer.cs">
-      <DependentUpon>PayForSales.cs</DependentUpon>
     </Compile>
     <Compile Include="PayOption.cs">
       <SubType>Form</SubType>
@@ -140,12 +134,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PayByCash.resx">
-      <DependentUpon>PayByCash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PayForSales.resx">
-      <DependentUpon>PayForSales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayOption.resx">
       <DependentUpon>PayOption.cs</DependentUpon>

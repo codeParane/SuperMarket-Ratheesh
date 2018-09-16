@@ -212,6 +212,7 @@
             this.dgvCurrentBill.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvCurrentBill.Location = new System.Drawing.Point(12, 155);
             this.dgvCurrentBill.Name = "dgvCurrentBill";
+            this.dgvCurrentBill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCurrentBill.Size = new System.Drawing.Size(639, 327);
             this.dgvCurrentBill.TabIndex = 1;
             this.dgvCurrentBill.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCurrentBill_RowEnter);

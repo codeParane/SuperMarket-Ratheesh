@@ -436,7 +436,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 507);
-            this.ControlBox = false;
             this.Controls.Add(this.loanUpdateCre);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.loanSettle);
@@ -470,6 +469,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PayOption";
             this.Text = "PayOption";

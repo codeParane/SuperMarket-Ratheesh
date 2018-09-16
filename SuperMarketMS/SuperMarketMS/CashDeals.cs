@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SuperMarketMS
 {
-    public partial class PayForSales : Form
+    public partial class CashDeals : Form
     {
-        public PayForSales()
+        public CashDeals()
         {
             InitializeComponent();
         }

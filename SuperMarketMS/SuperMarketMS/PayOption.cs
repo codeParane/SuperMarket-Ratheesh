@@ -209,8 +209,19 @@ namespace SuperMarketMS
                     decimal dis = Math.Round(decimal.Parse(dr_getProducta["disa"].ToString()), 2);
                     decimal net = Math.Round(decimal.Parse(dr_getProducta["net"].ToString()), 2);
 
+                        
+                    string qtyValue = "";
+                    if (qty % 1 != 0)
+                    {
+                        qtyValue = qty.ToString() + "kg";
+                    }
+                    else
+                    {
+                        qtyValue = qty.ToString();
+                    }
+
                     itemList += "\n   " + num + " - " + itemName;
-                    itemList += " \n\t  " + qty + "\t" + String.Format("{0:N}", rate) + "\t" +
+                    itemList += " \n\t  " + qtyValue + "\t" + String.Format("{0:N}", rate) + "\t" +
                         String.Format("{0:N}", dis) + "\t" + String.Format("{0:N}", net);
                     num++;
                 }

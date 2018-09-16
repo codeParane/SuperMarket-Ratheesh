@@ -1,6 +1,6 @@
 ﻿namespace SuperMarketMS
 {
-    partial class PayByCash
+    partial class CashDeals
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // PayByCash
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 409);
-            this.Name = "PayByCash";
-            this.Text = "PayByCash";
-            this.ResumeLayout(false);
-
+            this.Text = "CashDeals";
         }
 
         #endregion

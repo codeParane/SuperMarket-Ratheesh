@@ -264,7 +264,15 @@ namespace SuperMarketMS
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            string delItemCode = dgvCurrentBill.SelectedRows[0].Cells[0].Value.ToString();
+            string delQty = dgvCurrentBill.SelectedRows[0].Cells[1].Value.ToString();
+            // MessageBox.Show(delItemCode + delQty); 
+            string qAddToBill = "delete from currentbill where itemname = '"+ delItemCode +
+                "' and qty="+ delQty +";";
+            dbconn.CloseConnection();
+            dbconn.OpenConnection();
+            MySqlCommand cAddToBill = new MySqlCommand(qAddToBill, dbconn.connection);
+            int queryAffected = cAddToBill.ExecuteNonQuery();
         }
 
         private void SalesRegister_Enter(object sender, EventArgs e)
