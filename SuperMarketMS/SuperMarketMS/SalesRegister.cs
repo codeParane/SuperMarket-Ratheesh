@@ -18,6 +18,13 @@ namespace SuperMarketMS
 
         private void SalesRegister_Load(object sender, EventArgs e)
         {
+            if (LoginForm.loggedUser == "" || LoginForm.loggedUser == null)
+            {
+                LoginForm.loggedUser = "Null User";
+            };
+
+
+
             pboItemImage.Image = Image.FromFile(@"D:\Resources\ItemImage\default.png");
             //
             string qCurrentBill = "select itemname, qty, rate, disa, net, cmprice from currentbill;";

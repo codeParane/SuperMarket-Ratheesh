@@ -19,6 +19,11 @@ namespace SuperMarketMS
 
         private void DashBoard_Load(object sender, EventArgs e)
         {
+            if (LoginForm.loggedUser == "" || LoginForm.loggedUser == null)
+            {
+                LoginForm.loggedUser = "Null User";
+            };
+
             if (LoginForm.loggedUser != null)
             {
                 dbLoggedUser.Text = "Cashier : " + LoginForm.loggedUser.ToUpper();

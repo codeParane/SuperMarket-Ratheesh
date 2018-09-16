@@ -168,11 +168,11 @@ namespace SuperMarketMS
 
             //headerPrint
             string header =
-                "\t  --SHATTHVEES SUPERMART--" +
-                "\n\t  Main Street, Kommathurai." +
+                "       --SHATTHVEES SUPERMART--" +
+                "\n\tMain Street, Kommathurai." +
                 "\n\t       TP-0652050369" +
-                "\n-------------------------------------------";
-               
+                "\n------------------------------------------------------";
+
             //"\n-------------------------------------------\n";
             p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
             {
@@ -184,10 +184,10 @@ namespace SuperMarketMS
 
 
             string title =
-                "\n----------------------------------------------"+ 
-                "\n  No    Item\t Qty\t Price \t Dis\t Amount\n" +
-                "\n----------------------------------------------";
-         
+                "\n------------------------------------------------------" +
+                "\n No Item Qty\t Price \t Dis\t Amount" +
+                "\n------------------------------------------------------" +
+
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
@@ -244,9 +244,9 @@ namespace SuperMarketMS
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
-                    "\n\t\tPaid By    : Cash   " + 
-                    "\n\t\tCash       : " + String.Format("{0:N}", poCash.Text) +
-                    "\n\t\tBalance    : " + String.Format("{0:N}", poBalance.Text);
+                    "\n\t\tPaid By\t: Cash   " + 
+                    "\n\t\tCash\t: " + String.Format("{0:N}", decimal.Parse(poCash.Text)) +
+                    "\n\t\tBalance\t: " + String.Format("{0:N}", decimal.Parse(poBalance.Text));
             }
             else if (payType == "card")
             {
@@ -256,12 +256,12 @@ namespace SuperMarketMS
                 string qAddToBill1 = "INSERT INTO sales(billDate, amount, revenue, payType)  VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd hh:mm")
                     + "'," + poTotalBill.Text + "," + revenue + ", 'card');delete from currentbill;";
                 MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
-                int queryAffected1 = cAddToBill1.ExecuteNonQuery();
+                //int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
-                    "\n\t\tPaid By    : Credit Card" + 
-                    "\n\t\tBank       : " + cmbCardType.Text +
-                    "\n\t\tDeducted   : " + String.Format("{0:N}", poTotalBill.Text);
+                    "\n\t\tPaid By\t : Credit Card" + 
+                    "\n\t\tBank\t   : " + cmbCardType.Text +
+                    "\n\t\tDeducted : " + String.Format("{0:N}", decimal.Parse(poTotalBill.Text));
 
             }
             else if (payType == "loan")
@@ -275,12 +275,11 @@ namespace SuperMarketMS
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
-                    "\n\t\tPaid By     : Loan" + 
-                    "\n\t\tAccount     : " + cmbLoanAccount.Text +
-                    "\n\t\tPerson      : " + cmbLoanName.Text +
-                    "\n\t\tSettle      : " + String.Format("{0:N}", loanSettle.Text) +
-                    "\n\t\tTotal Credit: " + String.Format("{0:N}", loanSettle.Text);
-
+                    "\n\t\tPaid By\t: Loan" + 
+                    "\n\t\tAccount\t: " + cmbLoanAccount.Text +
+                    "\n\t\tPerson\t: " + cmbLoanName.Text +
+                    "\n\t\tSettle\t: " + String.Format("{0:N}", decimal.Parse(loanSettle.Text)) +
+                    "\n\t\tTotal Credit: " + String.Format("{0:N}", decimal.Parse(loanSettle.Text));
             }
 
             //SELECT fields FROM table ORDER BY id DESC LIMIT 1;
@@ -300,23 +299,23 @@ namespace SuperMarketMS
             }
 
             string totalBill =
-                "\n-------------------------------------------" +
-                "\n\n\t\tGross \t : " + String.Format("{0:N}", poGross.Text) +
-                "\n\t\tDiscount \t : " + String.Format("{0:N}", (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text))) +
-                "\n\t\tTotal \t : " + String.Format("{0:N}", poTotalBill.Text);
+                "\n------------------------------------------------------" +
+                "\n\n\t\tGross \t : " + String.Format("{0:N}", decimal.Parse(poGross.Text)) +
+                "\n\t\tDiscount : " + String.Format("{0:N}", (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text))) +
+                "\n\t\tTotal \t : " + String.Format("{0:N}", decimal.Parse(poTotalBill.Text));
                 
 
             string bestBuy = 
                 "\n  * Best Buy Discount : " + String.Format("{0:N}", (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text)));
-
+         
             string title2 =
                 "\n " + DateTime.Now.ToString("yyyy / MM / dd") + " | " + DateTime.Now.ToString("hh:mm:ss")
                 + " | No: " + lastBillid + " | " + LoginForm.loggedUser;
                 
             string footer =
-                "\n-------------------------------------------"+
-                "\n<<<<  Thank You, Come Again.. >>>>" +
-                "\n  ----------IMPORTANT NOTICE----------" +
+                "\n------------------------------------------------------"+
+                "\n     <<<<  Thank You, Come Again.. >>>>" +
+                "\n  ------------------IMPORTANT NOTICE------------------" +
                 "\n  In case of a price discrepancy, return" +
                 "\n  the item & bill within 3 days to" +
                 "\n  refund the difference.";

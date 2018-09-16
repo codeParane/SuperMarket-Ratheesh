@@ -206,6 +206,8 @@
             // dgvCurrentBill
             // 
             this.dgvCurrentBill.AllowUserToAddRows = false;
+            this.dgvCurrentBill.AllowUserToDeleteRows = false;
+            this.dgvCurrentBill.AllowUserToResizeRows = false;
             this.dgvCurrentBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCurrentBill.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvCurrentBill.Location = new System.Drawing.Point(12, 155);

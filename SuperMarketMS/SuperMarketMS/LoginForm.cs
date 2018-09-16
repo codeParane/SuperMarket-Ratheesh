@@ -14,7 +14,7 @@ namespace SuperMarketMS
 {
     public partial class LoginForm : Form
     {
-        public static string loggedUser;
+        public static string loggedUser= "Null User";
         DbConn dbconn = new DbConn();
         public LoginForm()
         {
@@ -34,7 +34,10 @@ namespace SuperMarketMS
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            if (loggedUser == "" || loggedUser == null)
+            {
+                loggedUser = "Null User";
+                    };
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
