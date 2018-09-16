@@ -89,7 +89,7 @@ namespace SuperMarketMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)

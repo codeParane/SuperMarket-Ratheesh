@@ -171,16 +171,23 @@ namespace SuperMarketMS
                 "\t  --SHATTHVEES SUPERMART--" +
                 "\n\t  Main Street, Kommathurai." +
                 "\n\t       TP-0652050369" +
-                "\n-------------------------------------------" +
-                "\n#    Item\t Qty\t Grs\t Dis\t Net\n";
+                "\n-------------------------------------------";
+               
             //"\n-------------------------------------------\n";
             p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
             {
-                e1.Graphics.DrawString(header, new Font("Segoe ui", 10), new SolidBrush(Color.Black),
+                e1.Graphics.DrawString(header, new Font("Cooper std black", 10), new SolidBrush(Color.Black),
                     new RectangleF(0, 0, p.DefaultPageSettings.PrintableArea.Width,
                     p.DefaultPageSettings.PrintableArea.Height));
             };
             //----------------------------------
+
+
+            string title =
+                "\n----------------------------------------------"+ 
+                "\n  No    Item\t Qty\t Price \t Dis\t Amount\n" +
+                "\n----------------------------------------------";
+         
 
             dbconn.CloseConnection();
             dbconn.OpenConnection();
@@ -199,8 +206,8 @@ namespace SuperMarketMS
                     string itemName = dr_getProducta["itemname"].ToString();
                     decimal qty = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
                     decimal rate = Math.Round(decimal.Parse(dr_getProducta["rate"].ToString()), 2);
-                    decimal dis = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
-                    decimal net = Math.Round(decimal.Parse(dr_getProducta["qty"].ToString()), 3);
+                    decimal dis = Math.Round(decimal.Parse(dr_getProducta["disa"].ToString()), 2);
+                    decimal net = Math.Round(decimal.Parse(dr_getProducta["net"].ToString()), 2);
 
                     itemList += "\n   " + num + " - " + itemName;
                     itemList += " \n\t  " + qty + "\t" + rate + "\t" + dis + "\t" + net;
@@ -236,8 +243,9 @@ namespace SuperMarketMS
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
-                    "\n Paid By Cash   Cash       : " + poCash.Text +
-                    "\n                     Balance    : " + poBalance.Text;
+                    "\n\t\tPaid By    : Cash   " + 
+                    "\n\t\tCash       : " + poCash.Text +
+                    "\n\t\tBalance    : " + poBalance.Text;
             }
             else if (payType == "card")
             {
@@ -250,8 +258,9 @@ namespace SuperMarketMS
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
-                    "\n Paid By Card   Bank       : " + cmbCardType.Text +
-                    "\n                      Deducted   : " + poTotalBill.Text;
+                    "\n\t\tPaid By    : Credit Card" + 
+                    "\n\t\tBank       : " + cmbCardType.Text +
+                    "\n\t\tDeducted   : " + poTotalBill.Text;
 
             }
             else if (payType == "loan")
@@ -265,9 +274,11 @@ namespace SuperMarketMS
                 int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
-                    "\n Paid By Loan   Account    : " + cmbLoanAccount.Text +
-                    "\n                Person     : " + cmbLoanName.Text +
-                    "\n                       Credit     : " + poTotalBill.Text;
+                    "\n\t\tPaid By     : Loan" + 
+                    "\n\t\tAccount     : " + cmbLoanAccount.Text +
+                    "\n\t\tPerson      : " + cmbLoanName.Text +
+                    "\n\t\tSettle      : " + loanSettle.Text +
+                    "\n\t\tTotal Credit: " + loanSettle.Text;
 
             }
 
@@ -287,22 +298,31 @@ namespace SuperMarketMS
                 }
             }
 
-
-
-
             string totalBill =
+                "\n-------------------------------------------" +
                 "\n\n\t\tGross \t : " + poGross.Text +
-                "\n\t\tDiscount : " + (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text)) +
-                "\n\t\tTotal \t : " + poTotalBill.Text +
-                "\n------------------------------------------ -";
+                "\n\t\tDiscount \t : " + (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text)) +
+                "\n\t\tTotal \t : " + poTotalBill.Text;
+                
 
+            string bestBuy = 
+                "\n  * Best Buy Discount : " + (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text));
+
+            string title2 =
+                "\n " + DateTime.Now.ToString("yyyy / MM / dd") + " | " + DateTime.Now.ToString("hh:mm:ss")
+                + " | No: " + lastBillid + " | " + LoginForm.loggedUser;
+                
             string footer =
-                "\n   Bill # : "+ lastBillid +"   Casier : "+ LoginForm.loggedUser.ToUpper() +
-                "\n   Date   : "+ DateTime.Now.ToString("yyyy/MM/dd") +" | Time : "+ DateTime.Now.ToString("hh:mm:ss") +"." +
-                "\n   <<<<  Thank You, Come Again.. >>>>";
+                "\n-------------------------------------------"+
+                "\n<<<<  Thank You, Come Again.. >>>>" +
+                "\n  ----------IMPORTANT NOTICE----------" +
+                "\n  In case of a price discrepancy, return" +
+                "\n  the item & bill within 3 days to" +
+                "\n  refund the difference.";
 
 
-            
+            printString += title2;
+            printString += title;
             printString += itemList;
             printString += totalBill;
             printString += payTypeBill;
