@@ -210,7 +210,8 @@ namespace SuperMarketMS
                     decimal net = Math.Round(decimal.Parse(dr_getProducta["net"].ToString()), 2);
 
                     itemList += "\n   " + num + " - " + itemName;
-                    itemList += " \n\t  " + qty + "\t" + rate + "\t" + dis + "\t" + net;
+                    itemList += " \n\t  " + qty + "\t" + String.Format("{0:N}", rate) + "\t" +
+                        String.Format("{0:N}", dis) + "\t" + String.Format("{0:N}", net);
                     num++;
                 }
             }
@@ -244,8 +245,8 @@ namespace SuperMarketMS
 
                 payTypeBill =
                     "\n\t\tPaid By    : Cash   " + 
-                    "\n\t\tCash       : " + poCash.Text +
-                    "\n\t\tBalance    : " + poBalance.Text;
+                    "\n\t\tCash       : " + String.Format("{0:N}", poCash.Text) +
+                    "\n\t\tBalance    : " + String.Format("{0:N}", poBalance.Text);
             }
             else if (payType == "card")
             {
@@ -260,7 +261,7 @@ namespace SuperMarketMS
                 payTypeBill =
                     "\n\t\tPaid By    : Credit Card" + 
                     "\n\t\tBank       : " + cmbCardType.Text +
-                    "\n\t\tDeducted   : " + poTotalBill.Text;
+                    "\n\t\tDeducted   : " + String.Format("{0:N}", poTotalBill.Text);
 
             }
             else if (payType == "loan")
@@ -277,8 +278,8 @@ namespace SuperMarketMS
                     "\n\t\tPaid By     : Loan" + 
                     "\n\t\tAccount     : " + cmbLoanAccount.Text +
                     "\n\t\tPerson      : " + cmbLoanName.Text +
-                    "\n\t\tSettle      : " + loanSettle.Text +
-                    "\n\t\tTotal Credit: " + loanSettle.Text;
+                    "\n\t\tSettle      : " + String.Format("{0:N}", loanSettle.Text) +
+                    "\n\t\tTotal Credit: " + String.Format("{0:N}", loanSettle.Text);
 
             }
 
@@ -300,13 +301,13 @@ namespace SuperMarketMS
 
             string totalBill =
                 "\n-------------------------------------------" +
-                "\n\n\t\tGross \t : " + poGross.Text +
-                "\n\t\tDiscount \t : " + (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text)) +
-                "\n\t\tTotal \t : " + poTotalBill.Text;
+                "\n\n\t\tGross \t : " + String.Format("{0:N}", poGross.Text) +
+                "\n\t\tDiscount \t : " + String.Format("{0:N}", (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text))) +
+                "\n\t\tTotal \t : " + String.Format("{0:N}", poTotalBill.Text);
                 
 
             string bestBuy = 
-                "\n  * Best Buy Discount : " + (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text));
+                "\n  * Best Buy Discount : " + String.Format("{0:N}", (decimal.Parse(poBillDiscount.Text) + decimal.Parse(poItemSavings.Text)));
 
             string title2 =
                 "\n " + DateTime.Now.ToString("yyyy / MM / dd") + " | " + DateTime.Now.ToString("hh:mm:ss")
