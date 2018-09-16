@@ -16,5 +16,10 @@ namespace SuperMarketMS
         {
             InitializeComponent();
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            //load  data grid view
+        }
     }
 }

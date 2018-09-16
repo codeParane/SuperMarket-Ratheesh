@@ -267,7 +267,7 @@ namespace SuperMarketMS
                 string qAddToBill1 = "INSERT INTO sales(billDate, amount, revenue, payType)  VALUES ('" + DateTime.Now.ToString("yyyy/MM/dd hh:mm")
                     + "'," + poTotalBill.Text + "," + revenue + ", 'card');delete from currentbill;";
                 MySqlCommand cAddToBill1 = new MySqlCommand(qAddToBill1, dbconn.connection);
-                //int queryAffected1 = cAddToBill1.ExecuteNonQuery();
+                int queryAffected1 = cAddToBill1.ExecuteNonQuery();
 
                 payTypeBill =
                     "\n\t\tPaid By\t : Credit Card" + 

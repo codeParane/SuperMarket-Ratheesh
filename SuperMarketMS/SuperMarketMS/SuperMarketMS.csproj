@@ -126,6 +126,9 @@
     <Compile Include="viewDashboard.Designer.cs">
       <DependentUpon>viewDashboard.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CashDeals.resx">
+      <DependentUpon>CashDeals.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </EmbeddedResource>
